@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ practice_area.title }} - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">{{ practice_area.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'core:practice_areas' %}">Practice Areas</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ practice_area.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Details Section -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Left Side: Details & Case Studies -->
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3 mb-4">
+                        <div class="bg-light p-3 rounded text-gold"><i class="fa-solid {{ practice_area.icon_class }} fa-2x"></i></div>
+                        <h2 class="font-serif text-navy fw-bold mb-0">Legal Representation: {{ practice_area.title }}</h2>
+                    </div>
+                    
+                    <hr class="mb-4">
+                    
+                    <div class="practice-area-description text-muted mb-5 leading-relaxed">
+                        {{ practice_area.description|linebreaks }}
+                    </div>
+
+                    <!-- Related Case Studies -->
+                    {% if case_studies %}
+                    <div class="my-5 pt-4">
+                        <h4 class="font-serif text-navy fw-bold mb-4"><i class="fa-solid fa-folder-open text-gold me-2"></i>Recent Case Outcomes</h4>
+                        <div class="row g-4">
+                            {% for case in case_studies %}
+                            <div class="col-12">
+                                <div class="card border-0 shadow-sm p-4 bg-light">
+                                    <span class="badge text-bg-gold align-self-start mb-2">Outcome: Success</span>
+                                    <h5 class="font-serif text-navy fw-bold mb-2">{{ case.title }}</h5>
+                                    <p class="small text-muted mb-2"><strong>Client:</strong> {{ case.client_type }}</p>
+                                    <p class="small text-muted"><strong>Description:</strong> {{ case.description }}</p>
+                                    <p class="small text-success mb-0"><strong>Resolution:</strong> {{ case.outcome }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Right Side: Sidebar Navigation & Contact -->
+                <div class="col-lg-4">
+                    <!-- Navigation Sidebar -->
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white sticky-lg-top" style="top: 100px; z-index: 10;">
+                        <h5 class="font-serif text-navy fw-bold mb-3">Other Services</h5>
+                        <ul class="list-unstyled sidebar-links ps-0">
+                            {% for other in other_practice_areas %}
+                            <li class="mb-2">
+                                <a href="{% url 'core:practice_area_detail' other.slug %}" class="text-decoration-none d-flex justify-content-between align-items-center py-2 px-3 rounded bg-light text-navy transition-hover">
+                                    <span class="small"><i class="fa-solid {{ other.icon_class }} me-2 text-gold"></i>{{ other.title }}</span>
+                                    <i class="fa-solid fa-chevron-right text-muted small"></i>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        
+                        <hr class="my-4">
+                        
+                        <!-- Contact Block -->
+                        <div class="bg-navy text-white p-4 rounded text-center">
+                            <i class="fa-solid fa-phone-volume text-gold display-6 mb-3"></i>
+                            <h6 class="font-serif text-white fw-bold mb-2">Immediate Legal Help?</h6>
+                            <p class="small text-muted mb-4">Connect with Advocate Rupesh Kumar Chaudhary directly.</p>
+                            <a href="tel:+919097578634" class="btn btn-gold w-100 py-2"><i class="fa-solid fa-phone me-2"></i>Call Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

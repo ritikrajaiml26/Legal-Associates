@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cookie Policy - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Cookie Policy</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Cookie Policy</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cookie Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-muted small leading-relaxed">
+                    <p>Last Updated: July 2026</p>
+                    <p>This Cookie Policy explains how LexRP Legal Associates & Consultants uses cookies and similar tracking technologies on our website.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">1. What are Cookies?</h5>
+                    <p>Cookies are small text files placed on your device to collect standard internet log details and visitor behavior information. They are used to make the website work efficiently and provide administrative analytics.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">2. How We Use Cookies</h5>
+                    <p>We use cookies to:</p>
+                    <ul>
+                        <li><strong>Ensure Security:</strong> We use Django's built-in security features, such as the CSRF cookie (`csrftoken`), to validate form submissions and protect against Cross-Site Request Forgery attacks.</li>
+                        <li><strong>Save Session State:</strong> Cookies help keep track of user sessions and display proper alerts or messages.</li>
+                        <li><strong>Analyze Visitors:</strong> We may use simple analytical cookies to measure site traffic and load performance.</li>
+                    </ul>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">3. Managing Your Cookies</h5>
+                    <p>You can set your browser not to accept cookies, and disable them in your browser preferences. However, note that disabling cookies may affect some website functionalities, particularly security checks on form submissions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

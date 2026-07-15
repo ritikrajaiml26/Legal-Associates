@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ article.title }} - LexRP Legal{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">{{ article.title }}</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'blog:article_list' %}">Articles</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ article.title }}</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Article Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Left: Full Article content -->
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center gap-3 mb-3 small text-muted">
+                        <span><i class="fa-solid fa-calendar me-2"></i>{{ article.created_at|date:"M d, Y" }}</span>
+                        <span>&bull;</span>
+                        <span><i class="fa-solid fa-user me-2"></i>{{ article.author }}</span>
+                        <span>&bull;</span>
+                        <span><i class="fa-solid fa-eye me-2"></i>{{ article.views_count }} Views</span>
+                    </div>
+                    
+                    <span class="badge text-bg-gold mb-4">{{ article.get_category_display }}</span>
+                    
+                    {% if article.image %}
+                    <div class="mb-4 text-center">
+                        <img src="{{ article.image.url }}" class="img-fluid rounded shadow-sm w-100 object-fit-cover" style="max-height: 400px;" alt="{{ article.title }}">
+                    </div>
+                    {% endif %}
+
+                    <div class="article-body text-muted leading-relaxed small">
+                        {{ article.content|linebreaks }}
+                    </div>
+
+                    <hr class="my-5">
+
+                    <!-- Back Button -->
+                    <a href="{% url 'blog:article_list' %}" class="btn btn-outline-navy"><i class="fa-solid fa-arrow-left me-2"></i>Back to Articles</a>
+                </div>
+
+                <!-- Right: Recent Articles Sidebar -->
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow-sm p-4 bg-white sticky-lg-top" style="top: 100px; z-index: 10;">
+                        <h5 class="font-serif text-navy fw-bold mb-4">Recent Articles</h5>
+                        
+                        <div class="d-flex flex-column gap-3">
+                            {% for recent in recent_articles %}
+                            <div class="d-flex gap-3 align-items-start border-bottom pb-3">
+                                {% if recent.image %}
+                                <img src="{{ recent.image.url }}" class="rounded object-fit-cover" width="70" height="70" alt="{{ recent.title }}">
+                                {% else %}
+                                <div class="bg-light rounded text-center d-flex align-items-center justify-content-center" style="width: 70px; height: 70px;">
+                                    <i class="fa-solid fa-newspaper text-muted"></i>
+                                </div>
+                                {% endif %}
+                                <div>
+                                    <h6 class="font-serif text-navy fw-bold mb-1 small"><a href="{% url 'blog:article_detail' recent.slug %}" class="text-navy text-decoration-none">{{ recent.title }}</a></h6>
+                                    <span class="small text-muted" style="font-size: 0.75rem;">{{ recent.created_at|date:"M d, Y" }}</span>
+                                </div>
+                            </div>
+                            {% empty %}
+                            <p class="small text-muted">No other articles available.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

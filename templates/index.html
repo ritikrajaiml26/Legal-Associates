@@ -1,0 +1,515 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}LexRP Legal Associates & Consultants - Advocating Your Rights{% endblock %}
+
+{% block content %}
+    <!-- 2. Hero Section (First Screen) -->
+    <section class="hero-section">
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="hero-title">Advocating Your Rights,<br><span>Securing Your Future.</span></h2>
+                    <p class="hero-description">
+                        Delivering trusted legal representation and strategic counsel across Civil, Criminal, Corporate, Family, Property, and Constitutional Law matters. We are committed to protecting our clients' rights through ethical advocacy, practical solutions, and a results-driven approach.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="{% url 'core:book_consultation' %}" class="btn btn-gold">Book Consultation</a>
+                        <a href="tel:+919097578634" class="btn btn-outline-white"><i class="fa-solid fa-phone me-2"></i>Call an Advocate</a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <!-- 3. Trust Indicators -->
+                    <div class="trust-box rounded shadow-lg mt-4 mt-lg-0">
+                        <div class="trust-item">
+                            <i class="fa-solid fa-circle-check text-gold"></i>
+                            <span>High Success Rate</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fa-solid fa-users text-gold"></i>
+                            <span>Client-Centered Approach</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fa-solid fa-shield-halved text-gold"></i>
+                            <span>Absolute Confidentiality</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fa-solid fa-gavel text-gold"></i>
+                            <span>Experienced Representation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Stats Row (Counters) -->
+    <section class="py-5 bg-navy text-white text-center">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <h3 class="counter-number text-gold font-serif display-5 fw-bold" data-target="15" data-suffix="+">0+</h3>
+                    <p class="small text-uppercase tracking-wide mb-0">Years of Practice</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="counter-number text-gold font-serif display-5 fw-bold" data-target="1200" data-suffix="+">0+</h3>
+                    <p class="small text-uppercase tracking-wide mb-0">Cases Handled</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="counter-number text-gold font-serif display-5 fw-bold" data-target="20" data-suffix="+">0+</h3>
+                    <p class="small text-uppercase tracking-wide mb-0">Practice Areas</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <h3 class="counter-number text-gold font-serif display-5 fw-bold" data-target="99" data-suffix="%">0%</h3>
+                    <p class="small text-uppercase tracking-wide mb-0">Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. About the Law Firm -->
+    <section id="about" class="about-section reveal">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <p class="section-label">About the Law Firm</p>
+                    <h2 class="section-title">Committed to Justice & Professional Excellence</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted">
+                        At LexRP Legal Associates & Consultants, we are committed to providing exceptional legal services with integrity, professionalism, and unwavering dedication to justice. As a full-service law firm, we offer comprehensive legal representation and strategic advisory services to individuals, businesses, startups, and institutions.
+                    </p>
+                    <p class="text-muted">
+                        Our team combines in-depth legal knowledge with practical experience to deliver effective, timely, and client-focused solutions. Whether representing clients in litigation, advising on complex transactions, or assisting with dispute resolution, we protect our clients' rights and strive for success.
+                    </p>
+                    <a href="{% url 'core:about' %}" class="btn btn-navy mt-3">Learn More About Us</a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="core-value-card">
+                                <div class="core-value-icon"><i class="fa-solid fa-scale-unbalanced"></i></div>
+                                <h5>Integrity</h5>
+                                <p class="small text-muted mb-0">We uphold the highest standards of honesty, transparency, and ethical conduct in every matter.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="core-value-card">
+                                <div class="core-value-icon"><i class="fa-solid fa-award"></i></div>
+                                <h5>Excellence</h5>
+                                <p class="small text-muted mb-0">We are committed to delivering outstanding legal services through continuous learning and preparation.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="core-value-card">
+                                <div class="core-value-icon"><i class="fa-solid fa-user-check"></i></div>
+                                <h5>Client-Centric</h5>
+                                <p class="small text-muted mb-0">Our clients are at the heart of everything we do. We listen carefully and act strategically.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="core-value-card">
+                                <div class="core-value-icon"><i class="fa-solid fa-user-shield"></i></div>
+                                <h5>Professionalism</h5>
+                                <p class="small text-muted mb-0">We conduct ourselves with dignity, respect, accountability, and absolute confidentiality.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Practice Areas -->
+    <section id="practice-areas" class="practice-section bg-off-white reveal">
+        <div class="container">
+            <div class="text-center mb-5">
+                <p class="section-label">Our Expertise</p>
+                <h2 class="section-title">Practice Areas</h2>
+                <hr class="section-divider section-divider-center">
+            </div>
+            <div class="row g-4">
+                {% for pa in practice_areas %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="practice-card">
+                        <div class="practice-icon"><i class="fa-solid {{ pa.icon_class }}"></i></div>
+                        <h5>{{ pa.title }}</h5>
+                        <p class="small text-muted">{{ pa.short_description }}</p>
+                        <a href="{% url 'core:practice_area_detail' pa.slug %}" class="practice-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-4">
+                    <div class="text-muted mb-3"><i class="fa-solid fa-folder-open fa-2x"></i></div>
+                    <p class="text-muted">No practice areas have been added yet.</p>
+                    <a href="/admin/core/practicearea/add/" class="btn btn-navy btn-sm">Add Practice Area</a>
+                </div>
+                {% endfor %}
+            </div>
+            {% if practice_areas %}
+            <div class="text-center mt-5">
+                <a href="{% url 'core:practice_areas' %}" class="btn btn-navy">View All Practice Areas</a>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <!-- 6. Why Choose Us -->
+    <section class="py-5 reveal">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-5 mb-lg-0">
+                    <p class="section-label">Why Choose Us</p>
+                    <h2 class="section-title">Your Trusted Legal Partner</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted">
+                        Choosing the right legal partner can make a significant difference in the outcome of your matter. At LexRP Legal, we combine legal expertise, strategic thinking, and a client-first approach to deliver reliable and effective legal solutions.
+                    </p>
+                    <div class="d-flex flex-column gap-3 mt-4">
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="text-gold"><i class="fa-solid fa-circle-check"></i></div>
+                            <div>
+                                <h6 class="mb-1 text-navy fw-bold">Experienced Lawyers</h6>
+                                <p class="small text-muted mb-0">Skilled professionals with deep litigation experience across multiple courts.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="text-gold"><i class="fa-solid fa-circle-check"></i></div>
+                            <div>
+                                <h6 class="mb-1 text-navy fw-bold">Transparent Fees</h6>
+                                <p class="small text-muted mb-0">Clear representation of costs without any hidden charges or unexpected bills.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-start">
+                            <div class="text-gold"><i class="fa-solid fa-circle-check"></i></div>
+                            <div>
+                                <h6 class="mb-1 text-navy fw-bold">Confidential Consultation</h6>
+                                <p class="small text-muted mb-0">Total discretion and protection of your personal and case information.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="border p-4 rounded bg-white shadow-sm h-100 transition-hover">
+                                <h6 class="text-navy fw-bold mb-2"><i class="fa-solid fa-user-clock text-gold me-2"></i>Personal Attention</h6>
+                                <p class="small text-muted mb-0">We custom tailor strategies to suit your unique situation and objectives.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border p-4 rounded bg-white shadow-sm h-100 transition-hover">
+                                <h6 class="text-navy fw-bold mb-2"><i class="fa-solid fa-bolt text-gold me-2"></i>Fast Response</h6>
+                                <p class="small text-muted mb-0">Active case tracking and prompt updates on your legal proceedings.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border p-4 rounded bg-white shadow-sm h-100 transition-hover">
+                                <h6 class="text-navy fw-bold mb-2"><i class="fa-solid fa-gavel text-gold me-2"></i>Court Representation</h6>
+                                <p class="small text-muted mb-0">Dedicated advocacy before Civil, Criminal, and Sub-divisional tribunals.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border p-4 rounded bg-white shadow-sm h-100 transition-hover">
+                                <h6 class="text-navy fw-bold mb-2"><i class="fa-solid fa-map-location-dot text-gold me-2"></i>Pan-India Network</h6>
+                                <p class="small text-muted mb-0">Affiliated network of legal partners for assistance anywhere in India.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Meet Our Advocates -->
+    <section class="py-5 bg-navy text-white reveal">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <p class="section-label text-gold">Our Professionals</p>
+                <h2 class="section-title text-white">Meet Our Advocates</h2>
+                <hr class="section-divider section-divider-center border-gold">
+            </div>
+            <div class="row g-4 justify-content-center">
+                {% for advocate in advocates %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card bg-navy border-secondary text-white h-100 advocate-card shadow">
+                        {% if advocate.photo %}
+                        <img src="{{ advocate.photo.url }}" class="card-img-top object-fit-cover" height="300" alt="{{ advocate.name }}">
+                        {% else %}
+                        <div class="bg-secondary text-center py-5 d-flex align-items-center justify-content-center" style="height: 300px;">
+                            <i class="fa-solid fa-user-tie fa-4x text-light"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body p-4 text-center">
+                            <h5 class="card-title font-serif text-gold fw-bold mb-1">{{ advocate.name }}</h5>
+                            <p class="small text-uppercase tracking-wider text-muted mb-3">{{ advocate.designation }}</p>
+                            <p class="small mb-1"><strong>Exp:</strong> {{ advocate.experience }}</p>
+                            <p class="small mb-1"><strong>Practice:</strong> {{ advocate.practice_areas }}</p>
+                            <div class="mt-4 d-flex justify-content-center gap-2">
+                                <a href="{% url 'core:advocate_profile' advocate.slug %}" class="btn btn-gold btn-sm">View Profile</a>
+                                <a href="mailto:{{ advocate.email }}" class="btn btn-outline-white btn-sm"><i class="fa-solid fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-4">
+                    <p class="text-muted">No advocates registered yet.</p>
+                    <a href="/admin/core/advocate/add/" class="btn btn-gold btn-sm">Add Advocate</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Featured Services -->
+    <section class="py-5 bg-off-white reveal">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <p class="section-label">Expert Documentation</p>
+                <h2 class="section-title">Featured Services</h2>
+                <hr class="section-divider section-divider-center">
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="border p-4 rounded bg-white shadow-sm text-center h-100">
+                        <div class="text-gold display-6 mb-3"><i class="fa-solid fa-file-invoice"></i></div>
+                        <h6 class="text-navy fw-bold">Legal Notice Drafting</h6>
+                        <p class="small text-muted mb-0">Professional notices sent for recovery, matrimonial, or tenant issues.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="border p-4 rounded bg-white shadow-sm text-center h-100">
+                        <div class="text-gold display-6 mb-3"><i class="fa-solid fa-gavel"></i></div>
+                        <h6 class="text-navy fw-bold">Bail Applications</h6>
+                        <p class="small text-muted mb-0">Filing regular and anticipatory bail petitions before sessions/high court.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="border p-4 rounded bg-white shadow-sm text-center h-100">
+                        <div class="text-gold display-6 mb-3"><i class="fa-solid fa-scroll"></i></div>
+                        <h6 class="text-navy fw-bold">Writ Petitions</h6>
+                        <p class="small text-muted mb-0">Drafting and filing petitions for enforcement of fundamental rights.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="border p-4 rounded bg-white shadow-sm text-center h-100">
+                        <div class="text-gold display-6 mb-3"><i class="fa-solid fa-signature"></i></div>
+                        <h6 class="text-navy fw-bold">Contract Drafting</h6>
+                        <p class="small text-muted mb-0">Bespoke agreements, terms, vendor covenants drafted to protect you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Consultation Process -->
+    <section class="py-5 reveal">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <p class="section-label">Our Workflow</p>
+                <h2 class="section-title">Consultation Process</h2>
+                <hr class="section-divider section-divider-center">
+            </div>
+            <div class="row g-4 justify-content-center process-flow">
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="process-step-num bg-gold text-white font-serif mx-auto mb-3">1</div>
+                    <h6 class="fw-bold text-navy">Book Appointment</h6>
+                    <p class="small text-muted">Submit our online form or call our team to request a slot.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="process-step-num bg-gold text-white font-serif mx-auto mb-3">2</div>
+                    <h6 class="fw-bold text-navy">Discuss Matter</h6>
+                    <p class="small text-muted">Talk to the advocate in-person or online, describing your case.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="process-step-num bg-gold text-white font-serif mx-auto mb-3">3</div>
+                    <h6 class="fw-bold text-navy">Legal Strategy</h6>
+                    <p class="small text-muted">We draft a personalized case strategy and plan outline.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 text-center">
+                    <div class="process-step-num bg-gold text-white font-serif mx-auto mb-3">4</div>
+                    <h6 class="fw-bold text-navy">Court & Resolution</h6>
+                    <p class="small text-muted">We represent you and file documents for final resolution.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 12. Frequently Asked Questions -->
+    <section id="faqs" class="py-5 bg-off-white reveal">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <p class="section-label">Need Help?</p>
+                <h2 class="section-title">Frequently Asked Questions</h2>
+                <hr class="section-divider section-divider-center">
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion accordion-flush shadow-sm rounded" id="faqAccordion">
+                        {% for faq in faqs %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold text-navy" type="button" data-bs-toggle="collapse" data-bs-target="#faq-{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="faq-{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted small">
+                                    {{ faq.answer }}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="accordion-item p-4 text-center">
+                            <p class="text-muted mb-0">FAQs will be shown here. Manage them in the admin dashboard.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="{% url 'core:faqs' %}" class="btn btn-outline-navy">See All FAQs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 13. Latest Legal Articles -->
+    <section id="articles" class="py-5 reveal">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <p class="section-label">Legal Blog</p>
+                <h2 class="section-title">Latest Legal Articles</h2>
+                <hr class="section-divider section-divider-center">
+            </div>
+            <div class="row g-4">
+                {% for article in recent_articles %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 article-card shadow-sm">
+                        {% if article.image %}
+                        <img src="{{ article.image.url }}" class="card-img-top object-fit-cover" height="200" alt="{{ article.title }}">
+                        {% else %}
+                        <div class="bg-light text-center py-4 d-flex align-items-center justify-content-center" style="height: 200px;">
+                            <i class="fa-solid fa-newspaper fa-3x text-muted"></i>
+                        </div>
+                        {% endif %}
+                        <div class="card-body p-4">
+                            <span class="badge text-bg-secondary mb-2">{{ article.get_category_display }}</span>
+                            <h5 class="card-title font-serif fw-bold text-navy mb-2"><a href="{% url 'blog:article_detail' article.slug %}" class="text-navy text-decoration-none">{{ article.title }}</a></h5>
+                            <p class="small text-muted">{{ article.content|truncatewords:20 }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 px-4 pb-4">
+                            <small class="text-muted d-block mb-3">Published: {{ article.created_at|date:"M d, Y" }}</small>
+                            <a href="{% url 'blog:article_detail' article.slug %}" class="btn btn-outline-navy btn-sm">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12 text-center py-4">
+                    <p class="text-muted">No legal articles have been published yet.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- 14. Court Coverage Section -->
+    <section class="py-5 bg-navy text-white text-center">
+        <div class="container py-4">
+            <h5 class="text-gold font-serif mb-4">Jurisdictions & Court Coverage</h5>
+            <div class="row g-3 justify-content-center">
+                <div class="col-auto"><span class="badge bg-secondary p-3">District Courts</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">High Courts</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">Consumer Forums</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">Family Courts</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">DLSA</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">Sub-Divisional Courts</span></div>
+                <div class="col-auto"><span class="badge bg-secondary p-3">Collectorate Courts</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 15. Contact Section & Consultation Form -->
+    <section class="py-5 bg-off-white reveal" id="contact-section">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <p class="section-label">Reach Us</p>
+                    <h2 class="section-title">Contact & Sitting Offices</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted mb-4">Schedule a session or reach our office directly for legal advice. Open in mornings and evenings.</p>
+                    
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white">
+                        <h6 class="text-navy fw-bold mb-3"><i class="fa-solid fa-location-dot text-gold me-2"></i>Sitting Office</h6>
+                        <p class="small text-muted mb-0">
+                            District Bar Association<br>
+                            New Hall No.-01, Civil Court, Motihari<br>
+                            Bihar - 845401
+                        </p>
+                    </div>
+
+                    <div class="card border-0 shadow-sm p-4 bg-white">
+                        <h6 class="text-navy fw-bold mb-3"><i class="fa-solid fa-building text-gold me-2"></i>Permanent Address</h6>
+                        <p class="small text-muted mb-0">
+                            Vill.- Wat Ganj, PO+PS-Pipra Kothi<br>
+                            Dist.- East Champaran<br>
+                            Bihar - 845429
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4 bg-white">
+                        <h4 class="font-serif text-navy fw-bold mb-3">Consultation Form</h4>
+                        <form id="consultation-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="consult-name" class="form-label small fw-bold">Name *</label>
+                                    <input type="text" class="form-control" id="consult-name" name="name" required placeholder="Your full name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="consult-phone" class="form-label small fw-bold">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="consult-phone" name="phone" required placeholder="10-digit mobile number">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-email" class="form-label small fw-bold">Email Address</label>
+                                    <input type="email" class="form-control" id="consult-email" name="email" placeholder="example@email.com">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-case" class="form-label small fw-bold">Case Type *</label>
+                                    <select class="form-select" id="consult-case" name="case_type" required>
+                                        <option value="" selected disabled>Select legal category</option>
+                                        <option value="civil">Civil - सिविल</option>
+                                        <option value="criminal">Criminal - क्रिमिनल</option>
+                                        <option value="matrimonial">Matrimonial - वैवाहिक मामले</option>
+                                        <option value="property">Property - संपत्ति मामले</option>
+                                        <option value="other">Other - अन्य</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-msg" class="form-label small fw-bold">Brief Message *</label>
+                                    <textarea class="form-control" id="consult-msg" name="message" rows="4" required placeholder="Briefly describe your legal query"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-doc" class="form-label small fw-bold">Upload Documents (PDF / Images)</label>
+                                    <input type="file" class="form-control" id="consult-doc" name="document">
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-navy w-100 py-3">Submit Consultation Request</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 18. Call-to-Action Banner -->
+    <section class="py-5 bg-navy text-white text-center">
+        <div class="container py-4">
+            <h3 class="font-serif fw-bold mb-3">Need Immediate Legal Assistance?</h3>
+            <p class="text-muted mb-4 max-width-600 mx-auto">Our advocate panel is available for consultation and advice. Connect with us to protect your rights.</p>
+            <a href="{% url 'core:book_consultation' %}" class="btn btn-gold px-4 py-3">Schedule a Consultation</a>
+        </div>
+    </section>
+{% endblock %}

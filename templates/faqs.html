@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Frequently Asked Questions - LexRP Legal{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Frequently Asked Questions</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">FAQs</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- FAQs Section -->
+    <section class="py-5">
+        <div class="container py-4">
+            <!-- Search field -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-6">
+                    <form method="get" action="." class="input-group shadow-sm">
+                        <input type="text" name="q" class="form-control py-3" placeholder="Search FAQ topics..." value="{{ request.GET.q }}">
+                        <button class="btn btn-navy" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+                    </form>
+                    {% if request.GET.q %}
+                    <div class="text-center mt-3">
+                        <a href="." class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-xmark me-2"></i>Clear Search</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- FAQ Accordion -->
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion accordion-flush shadow-sm rounded" id="faqAccordionPage">
+                        {% for faq in faqs %}
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fw-bold text-navy py-3" type="button" data-bs-toggle="collapse" data-bs-target="#faq-page-{{ faq.id }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="faq-page-{{ faq.id }}" class="accordion-collapse collapse" data-bs-parent="#faqAccordionPage">
+                                <div class="accordion-body text-muted small leading-relaxed">
+                                    {{ faq.answer|linebreaks }}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="accordion-item p-5 text-center">
+                            <i class="fa-solid fa-circle-question fa-3x text-muted mb-3"></i>
+                            <p class="text-muted mb-0">No questions found matching your search.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Custom Question Call -->
+            <div class="row justify-content-center mt-5 pt-4">
+                <div class="col-lg-8 text-center bg-light p-4 rounded shadow-sm">
+                    <h5 class="font-serif text-navy fw-bold mb-2">Have another question?</h5>
+                    <p class="small text-muted mb-3">If you couldn't find your answer here, please submit a query through our contact form or contact us directly.</p>
+                    <a href="{% url 'core:contact' %}" class="btn btn-navy btn-sm"><i class="fa-solid fa-envelope me-2"></i>Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

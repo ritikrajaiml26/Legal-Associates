@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">About Our Law Firm</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main About Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <p class="section-label">LexRP Legal</p>
+                    <h2 class="section-title">Committed to Justice & Legal Excellence</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted">
+                        At LexRP Legal Associates & Consultants, we are committed to providing exceptional legal services with integrity, professionalism, and unwavering dedication to justice. As a full-service law firm, we offer comprehensive legal representation and strategic advisory services to individuals, businesses, startups, institutions, and organizations across a broad spectrum of legal practice.
+                    </p>
+                    <p class="text-muted">
+                        Our team combines in-depth legal knowledge with practical experience to deliver effective, timely, and client-focused solutions. Whether representing clients in litigation, advising on complex commercial transactions, or assisting with dispute resolution, we strive to protect our clients' rights and achieve the best possible outcomes.
+                    </p>
+                    <p class="text-muted">
+                        We believe that every client deserves personalized attention, transparent communication, and legal strategies tailored to their unique circumstances. By fostering long-term relationships built on trust and confidence, we aim to be more than legal advisors—we aspire to be trusted partners in every legal journey.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4 bg-navy text-white rounded shadow">
+                        <h4 class="font-serif text-gold mb-3">Our Mission</h4>
+                        <p class="small text-muted mb-4">
+                            Our mission is to deliver high-quality, ethical, and solution-oriented legal services that protect the rights and interests of our clients. We are dedicated to providing practical legal advice, effective advocacy, and innovative solutions while maintaining the highest standards of professionalism, integrity, and client confidentiality.
+                        </p>
+                        <h4 class="font-serif text-gold mb-3">Our Vision</h4>
+                        <p class="small text-muted mb-0">
+                            Our vision is to become one of the most respected and trusted law firms by setting benchmarks in legal excellence, client service, and professional integrity. We aspire to build enduring relationships with our clients and contribute meaningfully to the advancement of justice, the rule of law, and responsible legal practice.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="my-5 pt-4">
+                <div class="text-center mb-5">
+                    <p class="section-label">Our Principles</p>
+                    <h2 class="section-title">Our Core Values</h2>
+                    <hr class="section-divider section-divider-center">
+                </div>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-scale-balanced"></i></div>
+                            <h5 class="fw-bold text-navy">Integrity</h5>
+                            <p class="small text-muted mb-0">We uphold the highest standards of honesty, transparency, and ethical conduct in every matter entrusted to us.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-award"></i></div>
+                            <h5 class="fw-bold text-navy">Excellence</h5>
+                            <p class="small text-muted mb-0">We deliver outstanding legal services through continuous learning, preparation, and dedication to quality.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-user-check"></i></div>
+                            <h5 class="fw-bold text-navy">Client-Centric Approach</h5>
+                            <p class="small text-muted mb-0">Our clients are at the heart of our practice. We understand objectives and build custom strategies.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-user-shield"></i></div>
+                            <h5 class="fw-bold text-navy">Professionalism</h5>
+                            <p class="small text-muted mb-0">We act with dignity, accountability, and respect in all interactions with clients and courts.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-key"></i></div>
+                            <h5 class="fw-bold text-navy">Confidentiality</h5>
+                            <p class="small text-muted mb-0">We maintain absolute secrecy and trust regarding all client documents and conversations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-4">
+                        <div class="border p-4 rounded bg-white shadow-sm h-100 text-center">
+                            <div class="text-gold display-6 mb-3"><i class="fa-solid fa-gavel"></i></div>
+                            <h5 class="fw-bold text-navy">Justice</h5>
+                            <p class="small text-muted mb-0">We are committed to protecting constitutional rights, fairness, and pursuing truth under the law.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- History Section -->
+            <div class="row align-items-center my-5 pt-4">
+                <div class="col-lg-6 mb-4 mb-lg-0 order-lg-2">
+                    <p class="section-label">Our Journey</p>
+                    <h2 class="section-title">Our History</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted">
+                        Founded with the vision of providing accessible, reliable, and high-quality legal services, LexRP Legal Associates & Consultants has grown into a multidisciplinary law firm serving clients across diverse sectors. Since its inception, the firm has focused on combining legal expertise with practical insight to address the evolving needs of individuals, businesses, and institutions.
+                    </p>
+                    <p class="text-muted">
+                        Over the years, we have built our reputation through dedication, meticulous legal work, and a commitment to achieving favorable outcomes. Today, LexRP Legal continues to expand its capabilities while remaining steadfast in its founding principles of integrity and client-focused service.
+                    </p>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="card bg-light border-0 p-4">
+                        <h4 class="font-serif text-navy fw-bold mb-3">Professional Ethics</h4>
+                        <p class="small text-muted mb-3">Professional ethics form the foundation of our legal practice. Every member is committed to maintaining the highest standards of conduct:</p>
+                        <ul class="small text-muted list-unstyled ps-0">
+                            <li class="mb-2"><i class="fa-solid fa-check text-gold me-2"></i>Upholding the rule of law and administration of justice.</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-gold me-2"></i>Acting with honesty, fairness, and independence.</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-gold me-2"></i>Preserving absolute confidentiality of client details.</li>
+                            <li class="mb-2"><i class="fa-solid fa-check text-gold me-2"></i>Avoiding conflicts of interest and maintaining complete transparency.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div class="my-5 pt-4" id="team">
+                <div class="text-center mb-5">
+                    <p class="section-label">Advocates</p>
+                    <h2 class="section-title">Meet Our Team</h2>
+                    <hr class="section-divider section-divider-center">
+                </div>
+                <div class="row g-4 justify-content-center">
+                    {% for advocate in advocates %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card h-100 advocate-card shadow-sm border-light">
+                            {% if advocate.photo %}
+                            <img src="{{ advocate.photo.url }}" class="card-img-top object-fit-cover" height="280" alt="{{ advocate.name }}">
+                            {% else %}
+                            <div class="bg-navy text-center py-5 d-flex align-items-center justify-content-center" style="height: 280px;">
+                                <i class="fa-solid fa-user-tie fa-4x text-light"></i>
+                            </div>
+                            {% endif %}
+                            <div class="card-body p-4 text-center">
+                                <h5 class="card-title font-serif fw-bold text-navy mb-1">{{ advocate.name }}</h5>
+                                <p class="small text-uppercase tracking-wider text-muted mb-3">{{ advocate.designation }}</p>
+                                <p class="small mb-1"><strong>Qualifications:</strong> {{ advocate.qualification }}</p>
+                                <p class="small mb-3"><strong>Bar Reg:</strong> {{ advocate.bar_council_registration }}</p>
+                                <a href="{% url 'core:advocate_profile' advocate.slug %}" class="btn btn-navy btn-sm">View Full Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="col-12 text-center py-4">
+                        <p class="text-muted">No advocates registered yet.</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

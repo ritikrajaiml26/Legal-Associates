@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Disclaimer - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Disclaimer</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Disclaimer</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Disclaimer Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-muted small leading-relaxed">
+                    <p>Last Updated: July 2026</p>
+                    
+                    <div class="border-start border-gold border-4 ps-3 py-1 my-4 bg-light">
+                        <strong class="text-navy">Bar Council of India Rules:</strong><br>
+                        Under the rules of the Bar Council of India, advocates and law firms are not permitted to advertise, solicit work, or seek publicity in any form or manner.
+                    </div>
+
+                    <p>By visiting this website (<a href="http://lexrplegal.com">lexrplegal.com</a>), you acknowledge and confirm the following:</p>
+                    
+                    <h5 class="text-navy fw-bold mt-4 mb-2">1. No Advertisement or Solicitation</h5>
+                    <p>There has been no advertisement, personal communication, solicitation, invitation, or inducement of any sort whatsoever from LexRP Legal Associates & Consultants or Advocate Rupesh Kumar Chaudhary to solicit any work through this website.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">2. Informational Purpose Only</h5>
+                    <p>The information provided on this website is made available to you solely at your request for informational purposes only. It should not be interpreted or construed as legal advice, a legal opinion, or an invitation for an attorney-client relationship.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">3. User Responsibility</h5>
+                    <p>The firm and its advocates are not liable for any consequence of any action taken by the user relying on material or information provided on this website. In cases where the user has any legal issues, they must seek independent legal counsel.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">4. Transmission of Information</h5>
+                    <p>Transmission, receipt, or use of this website does not constitute or create an attorney-client relationship. Submitting queries through our forms or contacting us does not automatically bind the firm or create client covenants until formally agreed upon.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Terms & Conditions - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Terms & Conditions</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Terms & Conditions</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Terms Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-muted small leading-relaxed">
+                    <p>Last Updated: July 2026</p>
+                    <p>Welcome to LexRP Legal Associates & Consultants. By accessing or using this website, you agree to comply with and be bound by the following Terms & Conditions of use.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">1. Use of Content</h5>
+                    <p>All materials and information on this website are provided for personal, non-commercial use only. You must not copy, reproduce, republish, or distribute any content without our prior written consent.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">2. Accuracy of Material</h5>
+                    <p>While we make reasonable efforts to maintain accurate and updated information, legal rules change frequently. We do not warrant the completeness, accuracy, or timeliness of the information on this website.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">3. Limitation of Liability</h5>
+                    <p>In no event shall LexRP Legal Associates & Consultants or Advocate Rupesh Kumar Chaudhary be liable for any damages arising out of the use or inability to use the materials on this site.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">4. User Conduct</h5>
+                    <p>You agree to use the site only for lawful purposes. You must not submit spam, upload malicious files, or attempt to violate the security of the server hosting this project.</p>
+
+                    <h5 class="text-navy fw-bold mt-4 mb-2">5. Governing Law</h5>
+                    <p>These terms and conditions are governed by and construed in accordance with the laws of India, and any disputes shall be subject to the exclusive jurisdiction of the courts in Motihari, East Champaran, Bihar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

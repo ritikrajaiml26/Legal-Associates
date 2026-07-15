@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact Us - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Contact Us</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Contact Info & Form -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row g-5">
+                <!-- Left: Location Details -->
+                <div class="col-lg-5">
+                    <p class="section-label">Get in Touch</p>
+                    <h2 class="section-title">Sitting & Permanent Offices</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted mb-4 small">For consultations, case representation, or document submissions, please visit our offices during shift hours or get in touch via email/phone.</p>
+
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-light">
+                        <h5 class="font-serif text-navy fw-bold mb-3"><i class="fa-solid fa-location-dot text-gold me-2"></i>Sitting Office</h5>
+                        <p class="small text-muted mb-0">
+                            District Bar Association<br>
+                            New Hall No.-01, Civil Court, Motihari<br>
+                            Bihar - 845401
+                        </p>
+                    </div>
+
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-light">
+                        <h5 class="font-serif text-navy fw-bold mb-3"><i class="fa-solid fa-building text-gold me-2"></i>Permanent Address</h5>
+                        <p class="small text-muted mb-0">
+                            Vill.- Wat Ganj, PO+PS-Pipra Kothi<br>
+                            Dist.- East Champaran<br>
+                            Bihar - 845429
+                        </p>
+                    </div>
+
+                    <div class="card border-0 shadow-sm p-4 bg-light">
+                        <h5 class="font-serif text-navy fw-bold mb-3"><i class="fa-solid fa-clock text-gold me-2"></i>Office Hours</h5>
+                        <ul class="list-unstyled text-muted small mb-0 ps-0">
+                            <li class="mb-2"><strong>Morning Shift:</strong> 06:00 AM to 09:00 AM</li>
+                            <li><strong>Evening Shift:</strong> 07:00 PM to 10:00 PM</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Right: Form & Google Maps -->
+                <div class="col-lg-7">
+                    <div class="card border-0 shadow-sm p-4 mb-4 bg-white">
+                        <h4 class="font-serif text-navy fw-bold mb-3">Consultation Form</h4>
+                        <form id="consultation-form">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="consult-name" class="form-label small fw-bold">Name *</label>
+                                    <input type="text" class="form-control" id="consult-name" name="name" required placeholder="Your full name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="consult-phone" class="form-label small fw-bold">Phone Number *</label>
+                                    <input type="tel" class="form-control" id="consult-phone" name="phone" required placeholder="10-digit mobile number">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-email" class="form-label small fw-bold">Email Address</label>
+                                    <input type="email" class="form-control" id="consult-email" name="email" placeholder="example@email.com">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-case" class="form-label small fw-bold">Case Type *</label>
+                                    <select class="form-select" id="consult-case" name="case_type" required>
+                                        <option value="" selected disabled>Select legal category</option>
+                                        <option value="civil">Civil - सिविल</option>
+                                        <option value="criminal">Criminal - क्रिमिनल</option>
+                                        <option value="matrimonial">Matrimonial - वैवाहिक मामले</option>
+                                        <option value="property">Property - संपत्ति मामले</option>
+                                        <option value="other">Other - अन्य</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-msg" class="form-label small fw-bold">Brief Message *</label>
+                                    <textarea class="form-control" id="consult-msg" name="message" rows="4" required placeholder="Briefly describe your legal query"></textarea>
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="consult-doc" class="form-label small fw-bold">Upload Documents (PDF / Images)</label>
+                                    <input type="file" class="form-control" id="consult-doc" name="document">
+                                </div>
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-navy w-100 py-3">Submit Consultation Request</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Iframe Google Maps -->
+                    <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+                        <!-- Embedded standard map centered on Pipra Kothi / Motihari East Champaran area -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14316.598687787352!2d84.9546059!3d26.5475142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x399335ef00000000%3A0xe54ef91395914104!2sPiprakothi%2C%20Bihar%20845429!5e0!3m2!1sen!2sin!4v1721000000000!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

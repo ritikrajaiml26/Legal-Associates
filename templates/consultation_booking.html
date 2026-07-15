@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Book Consultation - LexRP Legal Associates & Consultants{% endblock %}
+
+{% block content %}
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1 class="font-serif fw-bold text-white mb-2">Book a Legal Consultation</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Book Consultation</li>
+                </ol>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Booking Details Content -->
+    <section class="py-5">
+        <div class="container py-4">
+            <div class="row g-5 align-items-center">
+                <!-- Left: Booking steps & info -->
+                <div class="col-lg-6">
+                    <p class="section-label">Session Scheduling</p>
+                    <h2 class="section-title">Schedule a Consultation</h2>
+                    <hr class="section-divider mb-4">
+                    <p class="text-muted leading-relaxed mb-4">
+                        To receive objective, well-reasoned legal counsel regarding your civil, criminal, or matrimonial matter, schedule a private session with Advocate Rupesh Kumar Chaudhary. We offer both offline (in-office) and secure online (video/phone) consultations.
+                    </p>
+
+                    <div class="d-flex flex-column gap-3 mb-4">
+                        <div class="d-flex gap-3 align-items-center">
+                            <div class="bg-navy text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="fa-solid fa-1"></i></div>
+                            <div>
+                                <h6 class="text-navy fw-bold mb-0 small">Step 1: Book Appointment</h6>
+                                <p class="small text-muted mb-0">Fill out our online form or call +91-9097578634 to request a slot.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-center">
+                            <div class="bg-navy text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="fa-solid fa-2"></i></div>
+                            <div>
+                                <h6 class="text-navy fw-bold mb-0 small">Step 2: Pay the Fee</h6>
+                                <p class="small text-muted mb-0">We will verify your details and share UPI/Bank details for fee transfer.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-items-center">
+                            <div class="bg-navy text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;"><i class="fa-solid fa-3"></i></div>
+                            <div>
+                                <h6 class="text-navy fw-bold mb-0 small">Step 3: Discuss Your Matter</h6>
+                                <p class="small text-muted mb-0">Speak directly to the advocate, review strategies, and analyze documents.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Quick booking options card -->
+                <div class="col-lg-6">
+                    <div class="card border-0 shadow p-4 bg-navy text-white text-center">
+                        <div class="display-6 text-gold mb-3"><i class="fa-solid fa-calendar-check"></i></div>
+                        <h4 class="font-serif fw-bold text-white mb-2">Instant Booking via Phone</h4>
+                        <p class="small text-muted mb-4">Call our office to check availability and book a slot instantly.</p>
+                        
+                        <a href="tel:+919097578634" class="btn btn-gold btn-lg w-100 py-3 mb-3"><i class="fa-solid fa-phone me-2"></i>Call +91-9097578634</a>
+                        <a href="https://wa.me/919097578634" target="_blank" class="btn btn-outline-white w-100 py-3"><i class="fa-brands fa-whatsapp me-2"></i>WhatsApp Chat</a>
+                        
+                        <hr class="border-secondary my-4">
+                        
+                        <div class="text-start">
+                            <h6 class="text-gold fw-bold small mb-2"><i class="fa-solid fa-circle-info me-2"></i>Important Guidelines:</h6>
+                            <ul class="list-unstyled text-muted small ps-0 mb-0">
+                                <li class="mb-1">&bull; Have all related case files and notices ready.</li>
+                                <li class="mb-1">&bull; Standard consultation fees are applicable.</li>
+                                <li>&bull; All details shared are strictly confidential.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
