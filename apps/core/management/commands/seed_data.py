@@ -4,7 +4,7 @@ from apps.core.models import PracticeArea, Advocate, FAQ, Testimonial, CaseStudy
 from apps.blog.models import BlogArticle
 
 class Command(BaseCommand):
-    help = 'Seeds initial default data for LexRP Legal Associates & Consultants website.'
+    help = 'Seeds initial default data for LexRP Advocates & Consultants website.'
 
     def handle(self, *args, **options):
         self.stdout.write('Seeding data...')
@@ -144,7 +144,7 @@ class Command(BaseCommand):
             },
             {
                 'question': 'How long will my civil case take?',
-                'answer': 'The timeline of civil litigation depends entirely on court calendars, the nature of the dispute, filing requirements, and evidence complexity. LexRP Legal is committed to resolving matters efficiently with active case management.',
+                'answer': 'The timeline of civil litigation depends entirely on court calendars, the nature of the dispute, filing requirements, and evidence complexity. LexRP Advocates is committed to resolving matters efficiently with active case management.',
                 'order': 2
             },
             {
@@ -271,4 +271,4 @@ class Command(BaseCommand):
             if created:
                 self.stdout.write(f"Created article: {art['title']}")
 
-        self.stdout.write(self.style.SUCCESS('Successfully seeded all LexRP Legal database tables.'))
+        self.stdout.write(self.style.SUCCESS('Successfully seeded all LexRP Advocates database tables.'))

@@ -1,5 +1,5 @@
 /* ========================================
-   LexRP Legal Associates & Consultants
+   LexRP Advocates & Consultants
    Complete JavaScript
    ======================================== */
 
