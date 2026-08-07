@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}{{ advocate.name }} - Advocate Profile - LexRP Advocates{% endblock %}
+{% block title %}{{ advocate.name }} - Advocate Profile - LexRP Law Firm{% endblock %}
 
 {% block content %}
     <!-- Page Header -->
     <header class="page-header">
-        <div class="container">
+        <div class="container reveal-up">
             <h1 class="font-serif fw-bold text-white mb-2">Advocate Profile</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -23,83 +23,85 @@
         <div class="container py-4">
             <div class="row g-5">
                 <!-- Left: Photo & Quick Contact -->
-                <div class="col-lg-4">
-                    <div class="card border-0 shadow-sm p-4 bg-white text-center">
+                <div class="col-lg-4 reveal-left">
+                    <div class="glass-panel p-4 text-center" data-spotlight data-tilt>
                         {% if advocate.photo %}
-                        <img src="{{ advocate.photo.url }}" class="img-fluid rounded shadow-sm mb-4 object-fit-cover" style="max-height: 380px;" alt="{{ advocate.name }}">
+                        <div class="overflow-hidden rounded-4 mb-4 border border-warning shadow-lg mx-auto" style="max-width: 280px; height: 320px;">
+                            <img src="{{ advocate.photo.url }}" class="w-100 h-100 object-fit-cover" alt="{{ advocate.name }}">
+                        </div>
                         {% else %}
-                        <div class="bg-navy text-center py-5 d-flex align-items-center justify-content-center rounded mb-4" style="height: 300px;">
-                            <i class="fa-solid fa-user-tie fa-5x text-light"></i>
+                        <div class="mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-lg mb-4" style="width: 160px; height: 160px; background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold-bright);">
+                            <i class="fa-solid fa-user-tie fa-5x text-gold-bright"></i>
                         </div>
                         {% endif %}
                         
-                        <h4 class="font-serif text-navy fw-bold mb-1">{{ advocate.name }}</h4>
-                        <p class="text-muted small text-uppercase tracking-wider mb-4">{{ advocate.designation }}</p>
+                        <h4 class="font-serif text-gold-bright fw-bold mb-1">{{ advocate.name }}</h4>
+                        <span class="badge bg-gold text-dark font-sans fw-bold rounded-pill px-3 py-2 mb-4">{{ advocate.designation }}</span>
                         
-                        <hr class="mb-4">
+                        <hr class="border-secondary mb-4" style="opacity: 0.3;">
                         
                         <div class="text-start">
-                            <h6 class="fw-bold text-navy small mb-3">Direct Contact</h6>
-                            <p class="small text-muted mb-2"><i class="fa-solid fa-phone text-gold me-2"></i>{{ advocate.phone }}</p>
-                            <p class="small text-muted mb-2"><i class="fa-solid fa-envelope text-gold me-2"></i>{{ advocate.email }}</p>
+                            <h6 class="fw-bold text-white small mb-3"><i class="fa-solid fa-address-card text-gold-bright me-2"></i>Direct Contact</h6>
+                            <p class="small text-muted mb-2"><i class="fa-solid fa-phone text-gold me-2"></i><a href="tel:{{ advocate.phone }}" class="text-gold-light">{{ advocate.phone }}</a></p>
+                            <p class="small text-muted mb-2"><i class="fa-solid fa-envelope text-gold me-2"></i><a href="mailto:{{ advocate.email }}" class="text-gold-light">{{ advocate.email }}</a></p>
                             {% if advocate.linkedin_url %}
-                            <p class="small text-muted mb-0"><i class="fa-brands fa-linkedin text-gold me-2"></i><a href="{{ advocate.linkedin_url }}" target="_blank" class="text-navy text-decoration-none">LinkedIn Profile</a></p>
+                            <p class="small text-muted mb-0"><i class="fa-brands fa-linkedin text-gold me-2"></i><a href="{{ advocate.linkedin_url }}" target="_blank" class="text-gold-light text-decoration-none">LinkedIn Profile</a></p>
                             {% endif %}
                         </div>
                     </div>
                 </div>
 
                 <!-- Right: Bio & Professional Details -->
-                <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm p-4 bg-white">
-                        <h3 class="font-serif text-navy fw-bold mb-3">Professional Qualifications</h3>
+                <div class="col-lg-8 reveal-right">
+                    <div class="glass-panel p-4 p-md-5" data-spotlight>
+                        <h3 class="font-serif text-gold-bright fw-bold mb-3"><i class="fa-solid fa-graduation-cap me-2"></i>Professional Qualifications</h3>
                         
                         <div class="row g-3 my-2">
                             <div class="col-sm-6">
-                                <div class="bg-light p-3 rounded">
-                                    <span class="small text-muted d-block">Qualification</span>
-                                    <strong class="text-navy small">{{ advocate.qualification }}</strong>
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-building-columns me-1"></i> Education & Degree</span>
+                                    <strong class="text-white small fs-6">{{ advocate.qualification }}</strong>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="bg-light p-3 rounded">
-                                    <span class="small text-muted d-block">Experience</span>
-                                    <strong class="text-navy small">{{ advocate.experience }}</strong>
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-briefcase me-1"></i> Experience</span>
+                                    <strong class="text-white small fs-6">{{ advocate.experience }} Practice</strong>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="bg-light p-3 rounded">
-                                    <span class="small text-muted d-block">Languages Spoken</span>
-                                    <strong class="text-navy small">{{ advocate.languages }}</strong>
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-language me-1"></i> Languages Spoken</span>
+                                    <strong class="text-white small fs-6">{{ advocate.languages }}</strong>
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="bg-light p-3 rounded">
-                                    <span class="small text-muted d-block">Bar Council Registration</span>
-                                    <strong class="text-navy small">{{ advocate.bar_council_registration }}</strong>
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-id-card me-1"></i> Bar Council Registration</span>
+                                    <strong class="text-white small fs-6">{{ advocate.bar_council_registration }}</strong>
                                 </div>
                             </div>
                             <div class="col-sm-12">
-                                <div class="bg-light p-3 rounded">
-                                    <span class="small text-muted d-block">Practice Areas</span>
-                                    <strong class="text-navy small">{{ advocate.practice_areas }}</strong>
+                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
+                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-gavel me-1"></i> Core Practice Areas</span>
+                                    <strong class="text-white small fs-6">{{ advocate.practice_areas }}</strong>
                                 </div>
                             </div>
                         </div>
 
-                        <hr class="my-4">
+                        <hr class="my-4" style="opacity: 0.3;">
 
-                        <h4 class="font-serif text-navy fw-bold mb-3">Biography & Background</h4>
-                        <div class="text-muted small leading-relaxed">
+                        <h4 class="font-serif text-gold-bright fw-bold mb-3"><i class="fa-solid fa-book-open me-2"></i>Biography & Legal Practice</h4>
+                        <div class="text-body small leading-relaxed">
                             {% if advocate.bio %}
                                 {{ advocate.bio|linebreaks }}
                             {% else %}
-                                <p>Advocate {{ advocate.name }} has been delivering trusted legal services across various courts. Guided by ethical standards, integrity, and absolute confidentiality, they are dedicated to defending clients' rights and building robust arguments for successful case resolutions.</p>
+                                <p>Advocate {{ advocate.name }} has been delivering trusted legal services across civil and criminal courts. Guided by ethical standards, integrity, and absolute confidentiality, he is dedicated to defending clients' rights and building robust arguments for successful case resolutions.</p>
                             {% endif %}
                         </div>
-                        
-                        <div class="mt-4 pt-3">
-                            <a href="{% url 'core:contact' %}" class="btn btn-navy"><i class="fa-solid fa-calendar-check me-2"></i>Schedule Meeting</a>
+
+                        <div class="mt-4 pt-2">
+                            <a href="tel:{{ advocate.phone }}" class="btn btn-gold"><i class="fa-solid fa-phone me-2"></i>Contact Advocate {{ advocate.name }}</a>
                         </div>
                     </div>
                 </div>

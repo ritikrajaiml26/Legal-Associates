@@ -1,20 +1,86 @@
-/* ========================================
+/* ==========================================================================
    LexRP Advocates & Consultants
-   Complete JavaScript
-   ======================================== */
+   "Royal Obsidian & Frosted Glass Touch" - JavaScript Engine
+   ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ============ Navbar Scroll Effect ============
+    // ============ 1. Top Scroll Progress Line ============
+    const progressBar = document.createElement('div');
+    progressBar.id = 'scroll-progress-bar';
+    document.body.appendChild(progressBar);
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        if (progressBar) {
+            progressBar.style.width = scrolled + '%';
+        }
+    });
+
+    // ============ 2. Mouse Spotlight Tracker on Glass Panels ============
+    const glassPanels = document.querySelectorAll('.glass-panel, .practice-card, .core-value-card, .service-card-modern, .article-card, .advocate-card, .trust-box, .counter-card');
+    glassPanels.forEach(panel => {
+        panel.setAttribute('data-spotlight', 'true');
+        panel.addEventListener('mousemove', (e) => {
+            const rect = panel.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            panel.style.setProperty('--mouse-x', `${x}px`);
+            panel.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // ============ 3. Navbar Scroll Transformation & Active Link Highlighter ============
     const navbar = document.querySelector('.lexrp-navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            navbar.classList.toggle('scrolled', window.scrollY > 40);
         });
     }
 
-    // ============ Scroll Reveal Animations ============
-    const revealElements = document.querySelectorAll('.reveal');
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.lexrp-navbar .nav-link');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                const sectionHeight = section.offsetHeight;
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (current && link.getAttribute('href').includes(current)) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
+
+    // ============ 4. Advanced Scroll Reveal Animations ============
+    // Auto-assign staggered delays to children of .stagger-children
+    document.querySelectorAll('.stagger-children').forEach(parent => {
+        Array.from(parent.children).forEach((child, index) => {
+            child.classList.add(`delay-${(index % 5) + 1}`);
+            if (!child.classList.contains('reveal') &&
+                !child.classList.contains('reveal-up') &&
+                !child.classList.contains('reveal-left') &&
+                !child.classList.contains('reveal-right') &&
+                !child.classList.contains('reveal-scale')) {
+                child.classList.add('reveal-up');
+            }
+        });
+    });
+
+    const revealSelector = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale';
+    const revealElements = document.querySelectorAll(revealSelector);
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -22,22 +88,87 @@ document.addEventListener('DOMContentLoaded', () => {
                 revealObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
+    });
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ============ Back to Top Button ============
+    // ============ 5. Smooth Animated Counters ============
+    const counters = document.querySelectorAll('.counter-number');
+    if (counters.length > 0) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(entry.target);
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.4 });
+        counters.forEach(c => counterObserver.observe(c));
+    }
+
+    function animateCounter(el) {
+        const target = parseInt(el.getAttribute('data-target'), 10) || 0;
+        const suffix = el.getAttribute('data-suffix') || '';
+        const duration = 2200;
+        const startTime = performance.now();
+
+        function easeOutExpo(t) {
+            return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+        }
+
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutExpo(progress);
+            const currentValue = Math.floor(easedProgress * target);
+
+            el.textContent = currentValue.toLocaleString() + suffix;
+
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            } else {
+                el.textContent = target.toLocaleString() + suffix;
+            }
+        }
+
+        requestAnimationFrame(updateCounter);
+    }
+
+    // ============ 6. 3D Card Tilt Effect ============
+    const tiltCards = document.querySelectorAll('.trust-box, .practice-card, .core-value-card, .advocate-card, .article-card, [data-tilt]');
+    tiltCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = ((y - centerY) / centerY) * -6;
+            const rotateY = ((x - centerX) / centerX) * 6;
+
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+        });
+    });
+
+    // ============ 7. Back to Top Button ============
     const backToTop = document.querySelector('.back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
-            backToTop.classList.toggle('show', window.scrollY > 400);
+            backToTop.classList.toggle('show', window.scrollY > 350);
         });
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // ============ Smooth Scrolling for Anchors ============
+    // ============ 8. Smooth Anchor Scroll ============
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const id = this.getAttribute('href');
@@ -46,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (target) {
                 e.preventDefault();
                 target.scrollIntoView({ behavior: 'smooth' });
-                // Close mobile nav if open
                 const navCollapse = document.querySelector('#navbarNav');
                 if (navCollapse && navCollapse.classList.contains('show')) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
@@ -56,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ Assistant Callback Form Logic ============
+    // ============ 9. Assistant Callback Form Logic ============
     const asstForm = document.getElementById('assistant-form');
     const asstName = document.getElementById('asst-name');
     const asstMobile = document.getElementById('asst-mobile');
@@ -66,8 +196,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function validateAssistantForm() {
         if (asstName && asstMobile && asstAddress && asstSubmit) {
             const allFilled = asstName.value.trim() !== '' &&
-                              asstMobile.value.trim() !== '' &&
-                              asstAddress.value.trim() !== '';
+                               asstMobile.value.trim() !== '' &&
+                               asstAddress.value.trim() !== '';
             asstSubmit.disabled = !allFilled;
         }
     }
@@ -122,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ Consultation Form Logic ============
+    // ============ 10. Consultation Inquiry Form Logic ============
     const consultForm = document.getElementById('consultation-form');
     if (consultForm) {
         consultForm.addEventListener('submit', (e) => {
@@ -165,77 +295,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ Counter Animation ============
-    const counters = document.querySelectorAll('.counter-number');
-    if (counters.length > 0) {
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounter(entry.target);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        counters.forEach(c => counterObserver.observe(c));
-    }
-
-    function animateCounter(el) {
-        const target = parseInt(el.getAttribute('data-target'));
-        const suffix = el.getAttribute('data-suffix') || '';
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        const timer = setInterval(() => {
-            current += step;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            el.textContent = Math.floor(current) + suffix;
-        }, 16);
-    }
-
-    // ============ Toast Notification ============
+    // ============ 11. Toast Notification ============
     function showToast(message, type = 'success') {
         const toastContainer = document.getElementById('toast-container');
         if (!toastContainer) return;
 
-        const toastEl = document.createElement('div');
-        toastEl.className = `toast align-items-center text-bg-${type === 'success' ? 'dark' : 'danger'} border-0`;
-        toastEl.setAttribute('role', 'alert');
-        toastEl.innerHTML = `
-            <div class="d-flex">
-                <div class="toast-body">
-                    <i class="fa-solid ${type === 'success' ? 'fa-check-circle text-success' : 'fa-exclamation-circle text-danger'} me-2"></i>
-                    ${message}
+        const toastId = 'toast-' + Date.now();
+        const toastHtml = `
+            <div id="${toastId}" class="toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body d-flex align-items-center gap-2">
+                        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'} fs-5"></i>
+                        <span>${message}</span>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
             </div>
         `;
-        toastContainer.appendChild(toastEl);
-        const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
-        toast.show();
-        toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
-    }
 
-    // ============ Active Nav Link Highlighting ============
-    const sections = document.querySelectorAll('section[id]');
-    if (sections.length > 0) {
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 120;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
+        toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+        const toastEl = document.getElementById(toastId);
+        if (toastEl) {
+            const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+            toast.show();
+            toastEl.addEventListener('hidden.bs.toast', () => {
+                toastEl.remove();
             });
-            document.querySelectorAll('.lexrp-navbar .nav-link').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+        }
     }
-
 });
