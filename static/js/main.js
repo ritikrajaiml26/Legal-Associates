@@ -1,11 +1,11 @@
 /* ==========================================================================
    LexRP Law Firm
-   "Royal Obsidian & 8D Liquid Glass Water Touch" - 3D/8D Animation Engine
+   "Royal Obsidian & Sky Blue 8D Water Glass Touch" - Animation Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ============ 0. Theme Toggle (Dark / Day Water Glass Mode) ============
+    // ============ 0. Theme Toggle (Dark / Sky Blue Day Water Glass Mode) ============
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
     const themeIcon = document.getElementById('theme-icon');
     const htmlEl = document.documentElement;
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeToggleBtn.title = 'Switch to Dark Mode';
             } else {
                 themeIcon.className = 'fa-solid fa-moon text-gold-bright';
-                themeToggleBtn.title = 'Switch to Day Glass Water Mode';
+                themeToggleBtn.title = 'Switch to Sky Blue Day Mode';
             }
         }
     }
@@ -85,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const group3D = new THREE.Group();
         scene.add(group3D);
 
-        // 1. Central Floating 3D Gold Geometry (Icosahedron Wireframe)
         const icoGeo = new THREE.IcosahedronGeometry(2.8, 1);
         const icoMat = new THREE.MeshBasicMaterial({
             color: 0xd4af37,
@@ -96,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const mainMesh = new THREE.Mesh(icoGeo, icoMat);
         group3D.add(mainMesh);
 
-        // Inner solid core
         const coreGeo = new THREE.OctahedronGeometry(1.4, 0);
         const coreMat = new THREE.MeshBasicMaterial({
             color: 0xffd700,
@@ -107,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const coreMesh = new THREE.Mesh(coreGeo, coreMat);
         group3D.add(coreMesh);
 
-        // 2. Floating Orbiting 3D Legal Polyhedra Rings
         const torusGeo = new THREE.TorusGeometry(4.2, 0.03, 16, 100);
         const torusMat = new THREE.MeshBasicMaterial({
             color: 0xd4af37,
@@ -122,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
         torusRing2.rotation.y = Math.PI / 4;
         group3D.add(torusRing2);
 
-        // 3. 3D Particle Starfield
         const particleCount = 380;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
@@ -166,6 +162,19 @@ document.addEventListener('DOMContentLoaded', () => {
         function animate() {
             requestAnimationFrame(animate);
 
+            const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
+            if (isLightMode) {
+                icoMat.color.setHex(0x0284c7);
+                coreMat.color.setHex(0x38bdf8);
+                torusMat.color.setHex(0x0284c7);
+                particleMat.color.setHex(0x0284c7);
+            } else {
+                icoMat.color.setHex(0xd4af37);
+                coreMat.color.setHex(0xffd700);
+                torusMat.color.setHex(0xd4af37);
+                particleMat.color.setHex(0xffd700);
+            }
+
             scrollY += (targetScrollY - scrollY) * 0.05;
 
             mainMesh.rotation.x += 0.003;
@@ -189,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
     }
 
-    // ============ 4. 8D Liquid Water Ripple & Caustics Animation Canvas ============
+    // ============ 4. 8D Sky Blue Liquid Water Ripple & Caustics Canvas ============
     const waterCanvas = document.getElementById('water-canvas');
     if (waterCanvas) {
         init8DWaterAnimation(waterCanvas);
@@ -206,35 +215,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         let step = 0;
+        let mouseX = width / 2;
+        let mouseY = height / 2;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouseX = e.touches[0].clientX;
+                mouseY = e.touches[0].clientY;
+            }
+        });
 
         function drawWater() {
             requestAnimationFrame(drawWater);
             ctx.clearRect(0, 0, width, height);
 
-            step += 0.015;
+            step += 0.018;
             const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
 
-            // Water Wave 1
+            // Sky Blue Primary Waves
             ctx.beginPath();
-            for (let x = 0; x <= width; x += 15) {
-                const y = Math.sin(x * 0.008 + step) * 22 + Math.cos(x * 0.004 + step * 1.5) * 15 + height * 0.45;
+            for (let x = 0; x <= width; x += 12) {
+                const y = Math.sin(x * 0.008 + step) * 26 + Math.cos(x * 0.004 + step * 1.5) * 18 + height * 0.4;
                 if (x === 0) ctx.moveTo(x, y);
                 else ctx.lineTo(x, y);
             }
-            ctx.strokeStyle = isLightMode ? 'rgba(56, 189, 248, 0.18)' : 'rgba(212, 175, 55, 0.12)';
-            ctx.lineWidth = 3;
+            ctx.strokeStyle = isLightMode ? 'rgba(2, 132, 199, 0.45)' : 'rgba(212, 175, 55, 0.15)';
+            ctx.lineWidth = isLightMode ? 4 : 2;
             ctx.stroke();
 
-            // Water Wave 2 (Caustics Reflection Layer)
+            // Sky Blue Caustics Wave Layer 2
             ctx.beginPath();
-            for (let x = 0; x <= width; x += 18) {
-                const y = Math.cos(x * 0.006 - step * 1.2) * 28 + Math.sin(x * 0.003 - step) * 18 + height * 0.55;
+            for (let x = 0; x <= width; x += 15) {
+                const y = Math.cos(x * 0.007 - step * 1.3) * 32 + Math.sin(x * 0.003 - step * 0.8) * 20 + height * 0.6;
                 if (x === 0) ctx.moveTo(x, y);
                 else ctx.lineTo(x, y);
             }
-            ctx.strokeStyle = isLightMode ? 'rgba(14, 165, 233, 0.15)' : 'rgba(255, 215, 0, 0.1)';
-            ctx.lineWidth = 2;
+            ctx.strokeStyle = isLightMode ? 'rgba(56, 189, 248, 0.55)' : 'rgba(255, 215, 0, 0.12)';
+            ctx.lineWidth = isLightMode ? 3 : 2;
             ctx.stroke();
+
+            // Interactive Ripple Center under Pointer
+            if (isLightMode) {
+                ctx.beginPath();
+                ctx.arc(mouseX, mouseY, 120 + Math.sin(step * 4) * 20, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(2, 132, 199, 0.35)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+            }
         }
 
         drawWater();
@@ -244,12 +276,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const glassPanels = document.querySelectorAll('.glass-panel, .practice-card, .core-value-card, .service-card-modern, .article-card, .advocate-card, .trust-box, .counter-card');
     glassPanels.forEach(panel => {
         panel.setAttribute('data-spotlight', 'true');
-        panel.addEventListener('mousemove', (e) => {
+
+        const updateSpotlight = (clientX, clientY) => {
             const rect = panel.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
             panel.style.setProperty('--mouse-x', `${x}px`);
             panel.style.setProperty('--mouse-y', `${y}px`);
+        };
+
+        panel.addEventListener('mousemove', (e) => updateSpotlight(e.clientX, e.clientY));
+        panel.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                updateSpotlight(e.touches[0].clientX, e.touches[0].clientY);
+            }
         });
     });
 
@@ -371,16 +411,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============ 9. Dynamic 3D Perspective Tilt Effect ============
     const tiltCards = document.querySelectorAll('.trust-box, .practice-card, .core-value-card, .advocate-card, .article-card, [data-tilt]');
     tiltCards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
+        const handleTilt = (clientX, clientY) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             const rotateX = ((y - centerY) / centerY) * -10;
             const rotateY = ((x - centerX) / centerX) * 10;
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(30px) translateY(-8px)`;
+        };
+
+        card.addEventListener('mousemove', (e) => handleTilt(e.clientX, e.clientY));
+        card.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) handleTilt(e.touches[0].clientX, e.touches[0].clientY);
         });
 
         card.addEventListener('mouseleave', () => {

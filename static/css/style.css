@@ -1,6 +1,6 @@
 /* ==========================================================================
    LexRP Law Firm
-   "Royal Obsidian & 8D Liquid Glass Water Touch" - Design System
+   "Royal Obsidian & Sky Blue 8D Water Glass Touch" - Design System
    ========================================================================== */
 
 /* ---------- Google Fonts Import ---------- */
@@ -43,40 +43,50 @@
     --border-radius-md: 14px;
 }
 
-/* ---------- Day / Light Mode Theme Variables (Crystal 8D Water Glass) ---------- */
+/* ---------- Day / Light Mode Variables (Vibrant Sky Blue 8D Liquid Glass) ---------- */
 [data-theme="light"] {
-    --bg-dark: #f8fafc;
-    --bg-dark-secondary: #f1f5f9;
-    --bg-card-glass: rgba(255, 255, 255, 0.82);
-    --bg-card-glass-hover: rgba(255, 255, 255, 0.96);
-    --bg-glass-input: rgba(241, 245, 249, 0.9);
+    --bg-dark: #e0f2fe;
+    --bg-dark-secondary: #bae6fd;
+    --bg-card-glass: rgba(240, 249, 255, 0.88);
+    --bg-card-glass-hover: rgba(255, 255, 255, 0.98);
+    --bg-glass-input: rgba(224, 242, 254, 0.9);
 
-    --gold: #b48c14;
-    --gold-light: #475569;
-    --gold-bright: #d4af37;
-    --gold-dark: #8c6800;
-    --gold-glow: rgba(212, 175, 55, 0.35);
+    --gold: #0284c7;
+    --gold-light: #0369a1;
+    --gold-bright: #0284c7;
+    --gold-dark: #075985;
+    --gold-glow: rgba(56, 189, 248, 0.5);
 
     --navy-light: #0f172a;
     --text-white: #0f172a;
-    --text-muted: #64748b;
-    --text-body: #1e293b;
+    --text-muted: #334155;
+    --text-body: #0f172a;
 
-    --border-glass: rgba(212, 175, 55, 0.35);
-    --border-glass-bright: rgba(212, 175, 55, 0.85);
+    --border-glass: rgba(2, 132, 199, 0.35);
+    --border-glass-bright: #0284c7;
 
-    --shadow-glass: 0 20px 50px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
-    --shadow-gold-glow: 0 10px 40px rgba(212, 175, 55, 0.3);
+    --shadow-glass: 0 20px 50px rgba(2, 132, 199, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    --shadow-gold-glow: 0 10px 40px rgba(56, 189, 248, 0.5);
 }
 
 [data-theme="light"] body {
-    background-color: #f8fafc !important;
-    color: #1e293b !important;
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 35%, #7dd3fc 70%, #e0f2fe 100%) !important;
+    background-attachment: fixed !important;
+    color: #0f172a !important;
+}
+
+[data-theme="light"] body::before {
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.45) 0%, rgba(0,0,0,0) 70%) !important;
+}
+
+[data-theme="light"] body::after {
+    background: radial-gradient(circle, rgba(2, 132, 199, 0.45) 0%, rgba(0,0,0,0) 70%) !important;
 }
 
 [data-theme="light"] .lexrp-navbar {
-    background: rgba(248, 250, 252, 0.88) !important;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+    background: rgba(240, 249, 255, 0.92) !important;
+    border-bottom: 1px solid rgba(2, 132, 199, 0.35) !important;
+    box-shadow: 0 8px 32px rgba(2, 132, 199, 0.2) !important;
 }
 
 [data-theme="light"] .brand-text h1,
@@ -86,17 +96,29 @@
 }
 
 [data-theme="light"] p, [data-theme="light"] .text-body {
-    color: #334155 !important;
+    color: #1e293b !important;
+    font-weight: 500;
+}
+
+[data-theme="light"] .text-gold-bright, [data-theme="light"] .text-gold {
+    color: #0284c7 !important;
+}
+
+[data-theme="light"] .gradient-text-gold {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 [data-theme="light"] .hero-section {
-    background: linear-gradient(135deg, rgba(248, 250, 252, 0.94) 0%, rgba(241, 245, 249, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80') no-repeat center center;
-    background-size: cover;
+    background: linear-gradient(135deg, rgba(224, 242, 254, 0.92) 0%, rgba(186, 230, 253, 0.88) 100%),
+                url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80') no-repeat center center !important;
+    background-size: cover !important;
 }
 
 [data-theme="light"] .stats-banner {
-    background: #f1f5f9 !important;
+    background: rgba(186, 230, 253, 0.7) !important;
+    border-color: rgba(2, 132, 199, 0.3) !important;
 }
 
 [data-theme="light"] .counter-card,
@@ -105,9 +127,44 @@
 [data-theme="light"] .core-value-card,
 [data-theme="light"] .service-card-modern,
 [data-theme="light"] .trust-box {
-    background: rgba(255, 255, 255, 0.85) !important;
-    border-color: rgba(212, 175, 55, 0.35) !important;
-    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08) !important;
+    background: rgba(240, 249, 255, 0.88) !important;
+    border-color: rgba(2, 132, 199, 0.35) !important;
+    box-shadow: 0 15px 45px rgba(2, 132, 199, 0.18) !important;
+}
+
+/* Sky Blue Interactive Touch/Hover Spotlight on Containers */
+[data-theme="light"] .glass-panel[data-spotlight]::before,
+[data-theme="light"] .practice-card[data-spotlight]::before,
+[data-theme="light"] .core-value-card[data-spotlight]::before,
+[data-theme="light"] .service-card-modern[data-spotlight]::before,
+[data-theme="light"] .trust-box[data-spotlight]::before,
+[data-theme="light"] .counter-card[data-spotlight]::before,
+[data-theme="light"] .advocate-card[data-spotlight]::before {
+    background: radial-gradient(450px circle at var(--mouse-x) var(--mouse-y), rgba(56, 189, 248, 0.35), transparent 80%) !important;
+}
+
+[data-theme="light"] .glass-panel:hover,
+[data-theme="light"] .practice-card:hover,
+[data-theme="light"] .core-value-card:hover,
+[data-theme="light"] .service-card-modern:hover,
+[data-theme="light"] .trust-box:hover,
+[data-theme="light"] .counter-card:hover,
+[data-theme="light"] .advocate-card:hover {
+    border-color: #0284c7 !important;
+    box-shadow: 0 20px 50px rgba(2, 132, 199, 0.3), 0 0 30px rgba(56, 189, 248, 0.6) !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+}
+
+[data-theme="light"] .btn-gold {
+    background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%) !important;
+    color: #ffffff !important;
+    border-color: #0284c7 !important;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.4) !important;
+}
+
+[data-theme="light"] .btn-gold:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%) !important;
+    box-shadow: 0 12px 35px rgba(2, 132, 199, 0.6) !important;
 }
 
 [data-theme="light"] .footer-section {
@@ -266,8 +323,8 @@
 }
 
 [data-theme="light"] #water-canvas {
-    opacity: 0.8;
-    mix-blend-mode: multiply;
+    opacity: 0.85;
+    mix-blend-mode: overlay;
 }
 
 /* ---------- Top Animated Scroll Progress Line ---------- */
@@ -283,6 +340,11 @@
     z-index: 10000;
     box-shadow: 0 0 15px #ffd700, 0 0 25px rgba(212, 175, 55, 0.8);
     transition: width 0.1s linear;
+}
+
+[data-theme="light"] #scroll-progress-bar {
+    background: linear-gradient(90deg, #0284c7, #38bdf8, #ffffff, #0284c7);
+    box-shadow: 0 0 15px #38bdf8, 0 0 25px rgba(56, 189, 248, 0.8);
 }
 
 @keyframes shimmerProgress {
