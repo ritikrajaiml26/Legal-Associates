@@ -64,13 +64,13 @@
             <div class="row g-4 stagger-children">
                 <div class="col-6 col-md-3">
                     <div class="counter-card" data-tilt>
-                        <h3 class="counter-number" data-target="15" data-suffix="+">0+</h3>
+                        <h3 class="counter-number" data-target="1" data-suffix="+">0+</h3>
                         <p class="small text-uppercase tracking-wide text-gold-light mb-0 fw-bold">Years of Experience</p>
                     </div>
                 </div>
                 <div class="col-6 col-md-3">
                     <div class="counter-card" data-tilt>
-                        <h3 class="counter-number" data-target="1200" data-suffix="+">0+</h3>
+                        <h3 class="counter-number" data-target="120" data-suffix="+">0+</h3>
                         <p class="small text-uppercase tracking-wide text-gold-light mb-0 fw-bold">Cases Handled</p>
                     </div>
                 </div>
@@ -257,16 +257,16 @@
             </div>
             <div class="row g-4 justify-content-center stagger-children">
                 {% for advocate in advocates %}
-                <div class="col-lg-5 col-md-8">
+                <div class="col-lg-6 col-md-8">
                     <div class="advocate-card glass-panel h-100 p-4 p-md-5 text-white" data-spotlight data-tilt>
                         <div class="row align-items-center">
                             <div class="col-md-5 text-center mb-4 mb-md-0">
                                 {% if advocate.photo %}
-                                <div class="overflow-hidden rounded-circle mx-auto border border-2 border-warning shadow-lg" style="width: 150px; height: 150px;">
-                                    <img src="{{ advocate.photo.url }}" class="w-100 h-100 object-fit-cover" alt="{{ advocate.name }}">
+                                <div class="overflow-hidden rounded-circle mx-auto border border-3 border-warning shadow-lg" style="width: 160px; height: 160px; box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);">
+                                    <img src="{{ advocate.photo.url }}" class="w-100 h-100 object-fit-cover" style="object-position: top center;" alt="{{ advocate.name }}">
                                 </div>
                                 {% else %}
-                                <div class="mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 150px; height: 150px; background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold-bright);">
+                                <div class="mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-lg" style="width: 160px; height: 160px; background: rgba(212, 175, 55, 0.15); border: 3px solid var(--gold-bright);">
                                     <i class="fa-solid fa-user-tie fa-4x text-gold-bright"></i>
                                 </div>
                                 {% endif %}
@@ -280,7 +280,7 @@
                                         <i class="fa-solid fa-graduation-cap me-1 text-gold-bright"></i> {{ advocate.qualification }}
                                     </span>
                                     <span class="badge bg-warning text-dark px-3 py-2 rounded-pill font-sans fw-bold">
-                                        <i class="fa-solid fa-briefcase me-1"></i> {{ advocate.experience }} Experience
+                                        <i class="fa-solid fa-briefcase me-1"></i> {{ advocate.experience }} Practice
                                     </span>
                                 </div>
 
