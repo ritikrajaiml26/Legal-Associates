@@ -29,7 +29,7 @@
     --border-glass-bright: rgba(255, 215, 0, 0.6);
 
     --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa8625 100%);
-    --gradient-gold-text: linear-gradient(135deg, #ffffff 0%, #ffd700 20%, #d4af37 50%, #ffd700 80%, #ffffff 100%);
+    --gradient-gold-text: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #d4af37 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
 
     --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
@@ -105,11 +105,9 @@
 }
 
 [data-theme="light"] .gradient-text-gold {
-    background: linear-gradient(135deg, #e0f2fe 0%, #0284c7 20%, #0369a1 50%, #0284c7 80%, #e0f2fe 100%);
-    background-size: 200% auto;
+    background: linear-gradient(135deg, #0369a1 0%, #0284c7 50%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: goldSweep 4s linear infinite;
 }
 
 [data-theme="light"] .hero-section {
@@ -168,54 +166,6 @@
     background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%) !important;
     box-shadow: 0 12px 35px rgba(2, 132, 199, 0.6) !important;
 }
-
-[data-theme="light"]    .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%282, 132, 199, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-}
-
-/* ---------- Custom Cinematic Cursor ---------- */
-body.custom-cursor-active, body.custom-cursor-active * {
-    cursor: none !important;
-}
-
-.custom-cursor-dot, .custom-cursor-ring {
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 9999999;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.custom-cursor-dot {
-    width: 6px;
-    height: 6px;
-    background-color: var(--gold-bright);
-    /* Transition applied via GSAP in JS, but color transitions here */
-    transition: background-color 0.3s;
-}
-
-.custom-cursor-ring {
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    transition: width 0.3s var(--ease-out-expo), height 0.3s var(--ease-out-expo), border-color 0.3s, background-color 0.3s;
-}
-
-.custom-cursor-ring.hovered {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(212, 175, 55, 0.1);
-    border-color: var(--gold-bright);
-}
-
-[data-theme="light"] .custom-cursor-dot { background-color: #0284c7; }
-[data-theme="light"] .custom-cursor-ring { border-color: rgba(2, 132, 199, 0.5); }
-[data-theme="light"] .custom-cursor-ring.hovered { background-color: rgba(2, 132, 199, 0.1); border-color: #0284c7; }
-
-/* ---------- End Custom Cinematic Cursor ---------- */
 
 /* ---------- 1. 3D/6D Cinematic Intro Splash Screen (4 Seconds) ---------- */
 #cinematic-intro-splash {
@@ -516,21 +466,8 @@ a { text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
 
 .gradient-text-gold {
     background: var(--gradient-gold-text);
-    background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: goldSweep 4s linear infinite;
-}
-
-@keyframes goldSweep {
-    0% { background-position: -200% center; }
-    100% { background-position: 200% center; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .gradient-text-gold, .hero-ambient-blob-1, .hero-ambient-blob-2, .splash-icon-wrapper { 
-        animation: none !important; 
-    }
 }
 
 .section-label {
