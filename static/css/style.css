@@ -167,11 +167,6 @@
     box-shadow: 0 12px 35px rgba(2, 132, 199, 0.6) !important;
 }
 
-[data-theme="light"] .footer-section {
-    background: #0f172a !important;
-    color: #e2e8f0 !important;
-}
-
 /* ---------- 1. 3D/6D Cinematic Intro Splash Screen (4 Seconds) ---------- */
 #cinematic-intro-splash {
     position: fixed;
@@ -1146,74 +1141,86 @@ section:hover .section-divider {
 .page-header .breadcrumb-item.active { color: var(--text-muted); }
 .page-header .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.4); }
 
-/* ---------- Footer Fixed Layout & High-Contrast Visibility Fix ---------- */
-.footer-section {
+/* ---------- Footer High-Contrast Visibility Override Fix ---------- */
+.footer-section,
+footer.footer-section {
     background: #060b14 !important;
-    color: #e2e8f0 !important;
-    border-top: 1px solid var(--border-glass);
-    position: relative;
-    z-index: 5;
+    color: #f8fafc !important;
+    border-top: 1px solid var(--border-glass) !important;
+    position: relative !important;
+    z-index: 5 !important;
     margin-bottom: 0 !important;
     padding-bottom: 2.5rem !important;
 }
 
-.footer-section .footer-title,
 .footer-section h4,
-.footer-section h5 {
+.footer-section h5,
+.footer-section .footer-title {
     color: #ffd700 !important;
-    font-family: var(--font-serif);
-    font-weight: 700;
+    font-family: var(--font-serif) !important;
+    font-weight: 700 !important;
 }
 
 .footer-section p,
+.footer-section .footer-desc,
+.footer-section .text-body,
 .footer-section .text-muted,
+.footer-section span,
 .footer-section small {
-    color: #cbd5e1 !important;
+    color: #e2e8f0 !important;
+    opacity: 1 !important;
+}
+
+.footer-section .footer-brand p {
+    color: #f3e5ab !important;
 }
 
 .footer-section .footer-links a {
-    color: #94a3b8 !important;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
+    color: #cbd5e1 !important;
+    font-size: 0.92rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
 }
 
 .footer-section .footer-links a:hover {
     color: #ffd700 !important;
-    padding-left: 6px;
+    padding-left: 6px !important;
 }
 
-.footer-section .footer-contact-info {
-    color: #cbd5e1 !important;
-}
-
-.footer-section .footer-contact-info li {
-    color: #e2e8f0 !important;
+.footer-section .footer-contact-info li,
+.footer-section .footer-contact-info span,
+.footer-section .footer-contact-info strong,
+.footer-section .footer-contact-info a {
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    opacity: 1 !important;
 }
 
 .footer-section .footer-contact-info strong {
-    color: #ffffff !important;
+    color: #ffd700 !important;
+    font-weight: 700 !important;
 }
 
 .footer-section .footer-contact-info i {
     color: #ffd700 !important;
+    font-size: 1.1rem !important;
 }
 
 .footer-section .social-links a {
-    color: #94a3b8 !important;
-    font-size: 1.25rem;
-    transition: all 0.3s ease;
+    color: #cbd5e1 !important;
+    font-size: 1.3rem !important;
+    transition: all 0.3s ease !important;
 }
 
 .footer-section .social-links a:hover {
     color: #ffd700 !important;
-    transform: translateY(-3px);
+    transform: translateY(-3px) !important;
 }
 
 .footer-legal-links a {
-    color: #94a3b8 !important;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+    color: #cbd5e1 !important;
+    font-size: 0.88rem !important;
+    transition: all 0.3s ease !important;
 }
 
 .footer-legal-links a:hover {
@@ -1221,7 +1228,7 @@ section:hover .section-divider {
 }
 
 .footer-section hr {
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* ---------- Floating Emergency & WhatsApp Badges Glass ---------- */
