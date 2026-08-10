@@ -1,12 +1,12 @@
 /* ==========================================================================
    LexRP Law Firm
-   "Royal Obsidian & 6D Cinematic Glass Touch" - Design & Animation System
+   "Royal Obsidian & 8D Liquid Glass Water Touch" - Design System
    ========================================================================== */
 
 /* ---------- Google Fonts Import ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ---------- CSS Variables (Dark Luxury Glass & 3D System) ---------- */
+/* ---------- CSS Variables (Dark Luxury Obsidian & 3D Glass) ---------- */
 :root {
     --bg-dark: #060b14;
     --bg-dark-secondary: #0a1120;
@@ -41,6 +41,78 @@
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --border-radius-lg: 20px;
     --border-radius-md: 14px;
+}
+
+/* ---------- Day / Light Mode Theme Variables (Crystal 8D Water Glass) ---------- */
+[data-theme="light"] {
+    --bg-dark: #f8fafc;
+    --bg-dark-secondary: #f1f5f9;
+    --bg-card-glass: rgba(255, 255, 255, 0.82);
+    --bg-card-glass-hover: rgba(255, 255, 255, 0.96);
+    --bg-glass-input: rgba(241, 245, 249, 0.9);
+
+    --gold: #b48c14;
+    --gold-light: #475569;
+    --gold-bright: #d4af37;
+    --gold-dark: #8c6800;
+    --gold-glow: rgba(212, 175, 55, 0.35);
+
+    --navy-light: #0f172a;
+    --text-white: #0f172a;
+    --text-muted: #64748b;
+    --text-body: #1e293b;
+
+    --border-glass: rgba(212, 175, 55, 0.35);
+    --border-glass-bright: rgba(212, 175, 55, 0.85);
+
+    --shadow-glass: 0 20px 50px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    --shadow-gold-glow: 0 10px 40px rgba(212, 175, 55, 0.3);
+}
+
+[data-theme="light"] body {
+    background-color: #f8fafc !important;
+    color: #1e293b !important;
+}
+
+[data-theme="light"] .lexrp-navbar {
+    background: rgba(248, 250, 252, 0.88) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+[data-theme="light"] .brand-text h1,
+[data-theme="light"] .section-title,
+[data-theme="light"] h1, [data-theme="light"] h2, [data-theme="light"] h3, [data-theme="light"] h4, [data-theme="light"] h5, [data-theme="light"] h6 {
+    color: #0f172a !important;
+}
+
+[data-theme="light"] p, [data-theme="light"] .text-body {
+    color: #334155 !important;
+}
+
+[data-theme="light"] .hero-section {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 0.94) 0%, rgba(241, 245, 249, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1600&q=80') no-repeat center center;
+    background-size: cover;
+}
+
+[data-theme="light"] .stats-banner {
+    background: #f1f5f9 !important;
+}
+
+[data-theme="light"] .counter-card,
+[data-theme="light"] .glass-panel,
+[data-theme="light"] .practice-card,
+[data-theme="light"] .core-value-card,
+[data-theme="light"] .service-card-modern,
+[data-theme="light"] .trust-box {
+    background: rgba(255, 255, 255, 0.85) !important;
+    border-color: rgba(212, 175, 55, 0.35) !important;
+    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .footer-section {
+    background: #0f172a !important;
+    color: #e2e8f0 !important;
 }
 
 /* ---------- 1. 3D/6D Cinematic Intro Splash Screen (4 Seconds) ---------- */
@@ -169,7 +241,7 @@
     100% { width: 100%; }
 }
 
-/* ---------- WebGL 3D Interactive Canvas ---------- */
+/* ---------- WebGL 3D & 8D Water Canvases ---------- */
 #webgl-3d-canvas {
     position: fixed;
     top: 0;
@@ -179,6 +251,23 @@
     pointer-events: none;
     z-index: 0;
     opacity: 0.85;
+}
+
+#water-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+    mix-blend-mode: screen;
+}
+
+[data-theme="light"] #water-canvas {
+    opacity: 0.8;
+    mix-blend-mode: multiply;
 }
 
 /* ---------- Top Animated Scroll Progress Line ---------- */
@@ -201,7 +290,7 @@
     100% { background-position: 200% 0%; }
 }
 
-/* ---------- Global Body & Reset (Fixed Overflow Bug) ---------- */
+/* ---------- Global Body & Reset ---------- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -214,7 +303,6 @@ html, body {
     overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
-    background-color: var(--bg-dark);
     margin: 0;
     padding: 0;
 }
@@ -223,7 +311,9 @@ body {
     font-family: var(--font-sans);
     color: var(--text-body);
     line-height: 1.8;
+    background-color: var(--bg-dark);
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* 3D Perspective Context for Containers */
@@ -386,7 +476,7 @@ section:hover .section-divider {
     font-family: var(--font-sans);
     font-weight: 700;
     letter-spacing: 0.04em;
-    padding: 0.85rem 2.4rem;
+    padding: 0.85rem 2.2rem;
 }
 
 .btn::after {
@@ -428,11 +518,11 @@ section:hover .section-divider {
 }
 
 .btn-navy:hover, .btn-outline-white:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     border-color: var(--gold-bright);
     color: var(--gold-bright) !important;
     transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .btn-outline-navy {
@@ -446,9 +536,9 @@ section:hover .section-divider {
     border-color: var(--gold-bright);
 }
 
-/* ---------- Navbar Glassmorphism ---------- */
+/* ---------- Navbar Glassmorphism & Fixed CTA Side-by-Side Row ---------- */
 .lexrp-navbar {
-    background: rgba(6, 11, 20, 0.75);
+    background: rgba(6, 11, 20, 0.78);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
@@ -507,12 +597,13 @@ section:hover .section-divider {
 
 .lexrp-navbar .nav-link {
     font-family: var(--font-sans);
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--text-body) !important;
-    padding: 0.5rem 1.1rem !important;
+    padding: 0.5rem 0.85rem !important;
     position: relative;
     transition: var(--transition);
+    white-space: nowrap;
 }
 
 .lexrp-navbar .nav-link::after {
@@ -539,24 +630,59 @@ section:hover .section-divider {
     width: 75%;
 }
 
+/* Nav CTA Side-by-Side Row Layout Fix */
+.nav-cta-group {
+    display: flex;
+    align-items: center;
+    flex-direction: row !important;
+    gap: 0.75rem;
+    flex-wrap: nowrap;
+}
+
 .nav-phone {
     font-family: var(--font-sans);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--gold-light);
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
+    padding: 0.55rem 1.1rem;
+    border-radius: 10px;
     background: rgba(252, 211, 77, 0.08);
-    border: 1px solid rgba(252, 211, 77, 0.2);
+    border: 1px solid rgba(252, 211, 77, 0.25);
+    white-space: nowrap;
     transition: var(--transition);
 }
 .nav-phone:hover {
     color: var(--gold-bright);
     background: rgba(252, 211, 77, 0.18);
     border-color: var(--gold-bright);
+}
+
+/* Day/Night Theme Toggle Switch */
+.theme-toggle-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border-glass);
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: all 0.35s var(--ease-out-expo);
+    backdrop-filter: blur(10px);
+    flex-shrink: 0;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--gold-bright);
+    color: #060b14;
+    transform: rotate(20deg) scale(1.1);
+    box-shadow: 0 0 20px var(--gold-glow);
 }
 
 /* ---------- Hero Section (Dynamic Ambient & Parallax Glass) ---------- */
@@ -1134,6 +1260,11 @@ section:hover .section-divider {
 
 /* ---------- Responsive Adjustments ---------- */
 @media (max-width: 991.98px) {
+    .nav-cta-group {
+        flex-direction: column !important;
+        align-items: stretch;
+        margin-top: 1rem;
+    }
     .hero-title { font-size: 2.6rem; }
     .section-title { font-size: 2.2rem; }
     .hero-section { min-height: 80vh; padding: 4rem 0; background-attachment: scroll; }

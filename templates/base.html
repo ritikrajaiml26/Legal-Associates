@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,10 +61,13 @@
     <!-- 3D Interactive WebGL Background Canvas -->
     <canvas id="webgl-3d-canvas"></canvas>
 
+    <!-- 8D Water Caustics & Ripple Canvas -->
+    <canvas id="water-canvas"></canvas>
+
     <!-- 1. Header (Top Navigation) -->
     <nav class="navbar navbar-expand-lg lexrp-navbar sticky-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'core:home' %}">
+        <div class="container-fluid px-lg-5">
+            <a class="navbar-brand me-auto me-lg-4" href="{% url 'core:home' %}">
                 <div class="brand-icon">
                     <i class="fa-solid fa-scale-balanced"></i>
                 </div>
@@ -87,8 +90,12 @@
                     <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'core:contact' %}">Contact</a></li>
                 </ul>
                 <div class="nav-cta-group">
-                    <a href="tel:+919097578634" class="nav-phone"><i class="fa-solid fa-phone"></i>Call Now</a>
+                    <a href="tel:+919097578634" class="nav-phone"><i class="fa-solid fa-phone"></i><span>Call Now</span></a>
                     <button class="btn btn-navy" data-bs-toggle="modal" data-bs-target="#assistantModal"><i class="fa-solid fa-headset me-1"></i>Callback Request</button>
+                    <!-- Theme Toggle Switch (Dark / Day Water Glass Mode) -->
+                    <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Switch Day/Night Water Glass Mode">
+                        <i class="fa-solid fa-moon text-gold-bright" id="theme-icon"></i>
+                    </button>
                 </div>
             </div>
         </div>

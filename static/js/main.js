@@ -1,14 +1,44 @@
 /* ==========================================================================
    LexRP Law Firm
-   "Royal Obsidian & 6D Cinematic Glass Touch" - 3D/6D Animation Engine
+   "Royal Obsidian & 8D Liquid Glass Water Touch" - 3D/8D Animation Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ============ 0. Cinematic 3D/6D Intro Splash Screen (4 Seconds) ============
+    // ============ 0. Theme Toggle (Dark / Day Water Glass Mode) ============
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('lexrp_theme') || 'dark';
+    setTheme(savedTheme);
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            setTheme(newTheme);
+        });
+    }
+
+    function setTheme(theme) {
+        htmlEl.setAttribute('data-theme', theme);
+        localStorage.setItem('lexrp_theme', theme);
+        if (themeIcon) {
+            if (theme === 'light') {
+                themeIcon.className = 'fa-solid fa-sun text-warning';
+                themeToggleBtn.title = 'Switch to Dark Mode';
+            } else {
+                themeIcon.className = 'fa-solid fa-moon text-gold-bright';
+                themeToggleBtn.title = 'Switch to Day Glass Water Mode';
+            }
+        }
+    }
+
+    // ============ 1. Cinematic 3D/6D Intro Splash Screen (4 Seconds) ============
     const splash = document.getElementById('cinematic-intro-splash');
     if (splash) {
-        // Prevent scrolling while splash screen is active
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
 
@@ -17,14 +47,13 @@ document.addEventListener('DOMContentLoaded', () => {
             document.documentElement.style.overflow = '';
             document.body.style.overflow = '';
 
-            // Trigger initial reveal animations after splash fade-out
             setTimeout(() => {
                 triggerScrollReveals();
             }, 300);
         }, 4000);
     }
 
-    // ============ 1. Top Scroll Progress Line ============
+    // ============ 2. Top Scroll Progress Line ============
     const progressBar = document.createElement('div');
     progressBar.id = 'scroll-progress-bar';
     document.body.appendChild(progressBar);
@@ -38,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ============ 2. Three.js Interactive 3D WebGL Background ============
+    // ============ 3. Three.js Interactive 3D WebGL Background ============
     const canvas3D = document.getElementById('webgl-3d-canvas');
     if (canvas3D && typeof THREE !== 'undefined') {
         initThreeJSWebGL(canvas3D);
@@ -53,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-        // Group for 3D elements
         const group3D = new THREE.Group();
         scene.add(group3D);
 
@@ -115,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const particleSystem = new THREE.Points(particleGeo, particleMat);
         scene.add(particleSystem);
 
-        // Scroll & Mouse Variables
         let scrollY = 0;
         let targetScrollY = 0;
         let mouseX = 0;
@@ -136,14 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // 3D Animation Loop
         function animate() {
             requestAnimationFrame(animate);
 
-            // Lerp scroll position for silky smooth movement
             scrollY += (targetScrollY - scrollY) * 0.05;
 
-            // Continuous rotation
             mainMesh.rotation.x += 0.003;
             mainMesh.rotation.y += 0.005;
 
@@ -153,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
             torusRing1.rotation.z += 0.002;
             torusRing2.rotation.z -= 0.002;
 
-            // Scroll-Driven 3D Transformations
             group3D.rotation.y = scrollY * 0.0015 + mouseX;
             group3D.rotation.x = scrollY * 0.001 + mouseY;
             group3D.position.y = -scrollY * 0.0025;
@@ -166,7 +189,58 @@ document.addEventListener('DOMContentLoaded', () => {
         animate();
     }
 
-    // ============ 3. Mouse Spotlight Tracker on Glass Panels ============
+    // ============ 4. 8D Liquid Water Ripple & Caustics Animation Canvas ============
+    const waterCanvas = document.getElementById('water-canvas');
+    if (waterCanvas) {
+        init8DWaterAnimation(waterCanvas);
+    }
+
+    function init8DWaterAnimation(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        let step = 0;
+
+        function drawWater() {
+            requestAnimationFrame(drawWater);
+            ctx.clearRect(0, 0, width, height);
+
+            step += 0.015;
+            const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
+
+            // Water Wave 1
+            ctx.beginPath();
+            for (let x = 0; x <= width; x += 15) {
+                const y = Math.sin(x * 0.008 + step) * 22 + Math.cos(x * 0.004 + step * 1.5) * 15 + height * 0.45;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = isLightMode ? 'rgba(56, 189, 248, 0.18)' : 'rgba(212, 175, 55, 0.12)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            // Water Wave 2 (Caustics Reflection Layer)
+            ctx.beginPath();
+            for (let x = 0; x <= width; x += 18) {
+                const y = Math.cos(x * 0.006 - step * 1.2) * 28 + Math.sin(x * 0.003 - step) * 18 + height * 0.55;
+                if (x === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = isLightMode ? 'rgba(14, 165, 233, 0.15)' : 'rgba(255, 215, 0, 0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+        }
+
+        drawWater();
+    }
+
+    // ============ 5. Mouse Spotlight Tracker on Glass Panels ============
     const glassPanels = document.querySelectorAll('.glass-panel, .practice-card, .core-value-card, .service-card-modern, .article-card, .advocate-card, .trust-box, .counter-card');
     glassPanels.forEach(panel => {
         panel.setAttribute('data-spotlight', 'true');
@@ -179,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ 4. Navbar Scroll Transformation & Active Link Highlighter ============
+    // ============ 6. Navbar Scroll Transformation & Active Link Highlighter ============
     const navbar = document.querySelector('.lexrp-navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -210,7 +284,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ 5. Advanced 3D Scroll Reveal Animations ============
+    // ============ 7. Advanced 3D Scroll Reveal Animations ============
     document.querySelectorAll('.stagger-children').forEach(parent => {
         Array.from(parent.children).forEach((child, index) => {
             child.classList.add(`delay-${(index % 5) + 1}`);
@@ -252,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // ============ 6. Smooth Animated Counters ============
+    // ============ 8. Smooth Animated Counters ============
     const counters = document.querySelectorAll('.counter-number');
     if (counters.length > 0) {
         const counterObserver = new IntersectionObserver((entries) => {
@@ -294,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(updateCounter);
     }
 
-    // ============ 7. Dynamic 3D Perspective Tilt Effect ============
+    // ============ 9. Dynamic 3D Perspective Tilt Effect ============
     const tiltCards = document.querySelectorAll('.trust-box, .practice-card, .core-value-card, .advocate-card, .article-card, [data-tilt]');
     tiltCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -314,7 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ 8. Back to Top Button ============
+    // ============ 10. Back to Top Button ============
     const backToTop = document.querySelector('.back-to-top');
     if (backToTop) {
         window.addEventListener('scroll', () => {
@@ -325,7 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ 9. Smooth Anchor Scroll ============
+    // ============ 11. Smooth Anchor Scroll ============
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const id = this.getAttribute('href');
@@ -343,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ============ 10. Assistant Callback Form Logic ============
+    // ============ 12. Assistant Callback Form Logic ============
     const asstForm = document.getElementById('assistant-form');
     const asstName = document.getElementById('asst-name');
     const asstMobile = document.getElementById('asst-mobile');
@@ -409,7 +483,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ 11. Consultation Inquiry Form Logic ============
+    // ============ 13. Consultation Inquiry Form Logic ============
     const consultForm = document.getElementById('consultation-form');
     if (consultForm) {
         consultForm.addEventListener('submit', (e) => {
@@ -452,7 +526,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ 12. Toast Notification ============
+    // ============ 14. Toast Notification ============
     function showToast(message, type = 'success') {
         const toastContainer = document.getElementById('toast-container');
         if (!toastContainer) return;
