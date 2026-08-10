@@ -26,8 +26,8 @@
                 <div class="col-lg-4 reveal-left">
                     <div class="glass-panel p-4 text-center" data-spotlight data-tilt>
                         {% if advocate.photo %}
-                        <div class="overflow-hidden rounded-4 mb-4 border border-warning shadow-lg mx-auto" style="max-width: 280px; height: 320px;">
-                            <img src="{{ advocate.photo.url }}" class="w-100 h-100 object-fit-cover" alt="{{ advocate.name }}">
+                        <div class="overflow-hidden rounded-4 mb-4 border border-warning shadow-lg mx-auto" style="max-width: 280px; height: 340px;">
+                            <img src="{{ advocate.photo.url }}" class="w-100 h-100 object-fit-cover" style="object-position: top center;" alt="{{ advocate.name }}">
                         </div>
                         {% else %}
                         <div class="mx-auto rounded-circle d-flex align-items-center justify-content-center shadow-lg mb-4" style="width: 160px; height: 160px; background: rgba(212, 175, 55, 0.15); border: 2px solid var(--gold-bright);">
@@ -76,12 +76,6 @@
                                 </div>
                             </div>
                             <div class="col-sm-6">
-                                <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
-                                    <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-id-card me-1"></i> Bar Council Registration</span>
-                                    <strong class="text-white small fs-6">{{ advocate.bar_council_registration }}</strong>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
                                 <div class="p-3 rounded-3" style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass);">
                                     <span class="small text-gold-light d-block mb-1"><i class="fa-solid fa-gavel me-1"></i> Core Practice Areas</span>
                                     <strong class="text-white small fs-6">{{ advocate.practice_areas }}</strong>
