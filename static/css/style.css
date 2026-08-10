@@ -1,12 +1,12 @@
 /* ==========================================================================
    LexRP Advocates & Consultants
-   "Royal Obsidian & Frosted Glass Touch" - Ultra Luxury Modern Design System
+   "Royal Obsidian & Frosted Glass Touch" - Ultra Luxury Modern 3D Design System
    ========================================================================== */
 
 /* ---------- Google Fonts Import ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ---------- CSS Variables (Dark Luxury Glass System) ---------- */
+/* ---------- CSS Variables (Dark Luxury Glass & 3D System) ---------- */
 :root {
     --bg-dark: #060b14;
     --bg-dark-secondary: #0a1120;
@@ -42,6 +42,18 @@
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --border-radius-lg: 20px;
     --border-radius-md: 14px;
+}
+
+/* ---------- WebGL 3D Interactive Canvas ---------- */
+#webgl-3d-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
 }
 
 /* ---------- Top Animated Scroll Progress Line ---------- */
@@ -83,6 +95,12 @@ body {
     line-height: 1.8;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+}
+
+/* 3D Perspective Context for Containers */
+body, section, .container, .row {
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 
 /* Ambient Lighting Mesh Background */
@@ -134,12 +152,13 @@ a { text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
     transition: all 0.4s var(--ease-out-expo);
     position: relative;
     overflow: hidden;
+    transform-style: preserve-3d;
 }
 
 .glass-panel:hover {
     border-color: var(--border-glass-bright);
     box-shadow: var(--shadow-glass), var(--shadow-gold-glow);
-    transform: translateY(-6px);
+    transform: translateY(-8px) scale(1.02);
 }
 
 /* Mouse Hover Spotlight Effect */
@@ -152,7 +171,7 @@ a { text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
     border-radius: inherit;
-    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255, 215, 0, 0.12), transparent 80%);
+    background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(255, 215, 0, 0.14), transparent 80%);
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -530,6 +549,7 @@ section:hover .section-divider {
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-glass);
     transition: all 0.4s var(--ease-out-expo);
+    transform-style: preserve-3d;
 }
 
 .trust-box:hover {
@@ -565,12 +585,13 @@ section:hover .section-divider {
     border: 1px solid var(--border-glass);
     backdrop-filter: blur(12px);
     transition: all 0.4s var(--ease-out-expo);
+    transform-style: preserve-3d;
 }
 
 .counter-card:hover {
     background: rgba(212, 175, 55, 0.12);
     border-color: var(--gold-bright);
-    transform: translateY(-6px);
+    transform: translateY(-6px) translateZ(30px);
     box-shadow: var(--shadow-gold-glow);
 }
 
@@ -584,7 +605,7 @@ section:hover .section-divider {
     margin-bottom: 0.3rem;
 }
 
-/* ---------- Cards & Sections Design (Frosted Glass) ---------- */
+/* ---------- Cards & Sections Design (Frosted Glass & 3D) ---------- */
 .about-section, .practice-section, .why-section, .team-section, .services-section, .process-section, .faq-section, .articles-section, .contact-section {
     padding: 6.5rem 0;
     position: relative;
@@ -598,14 +619,15 @@ section:hover .section-divider {
     border-radius: var(--border-radius-lg);
     padding: 2.25rem 1.75rem;
     height: 100%;
-    transition: all 0.4s var(--ease-out-expo);
+    transition: all 0.45s var(--ease-out-expo);
     position: relative;
     overflow: hidden;
     box-shadow: var(--shadow-glass);
+    transform-style: preserve-3d;
 }
 
 .core-value-card:hover, .practice-card:hover, .service-card-modern:hover, .article-card:hover, .advocate-card:hover {
-    transform: translateY(-8px) scale(1.01);
+    transform: translateY(-10px) translateZ(40px) scale(1.02);
     border-color: var(--border-glass-bright);
     box-shadow: var(--shadow-glass), var(--shadow-gold-glow);
 }
@@ -630,7 +652,7 @@ section:hover .section-divider {
 .service-card-modern:hover .icon-wrapper {
     background: var(--gold);
     color: #060b14;
-    transform: scale(1.1) rotate(8deg);
+    transform: scale(1.15) translateZ(30px) rotate(10deg);
     box-shadow: 0 0 25px var(--gold-glow);
 }
 
@@ -665,7 +687,7 @@ section:hover .section-divider {
 }
 
 .process-step:hover .process-step-num {
-    transform: scale(1.18) rotate(12deg);
+    transform: scale(1.2) translateZ(40px) rotate(15deg);
     background: linear-gradient(135deg, #ffd700, #dfc06e);
 }
 
@@ -679,6 +701,7 @@ section:hover .section-divider {
     overflow: hidden;
     box-shadow: var(--shadow-glass);
     transition: var(--transition);
+    transform-style: preserve-3d;
 }
 
 .accordion-button {
@@ -733,38 +756,39 @@ section:hover .section-divider {
     color: var(--text-white);
 }
 
-/* ---------- Advanced Scroll Reveal Animations ---------- */
-.reveal, .reveal-up {
+/* ---------- True 3D Scroll Reveal Animations ---------- */
+.reveal, .reveal-up, .reveal-3d-up {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
+    transform: perspective(1200px) rotateX(28deg) translateZ(-140px) translateY(80px);
+    transition: opacity 0.95s var(--ease-out-expo), transform 0.95s var(--ease-out-expo);
     will-change: opacity, transform;
 }
 
-.reveal-left {
+.reveal-left, .reveal-3d-left {
     opacity: 0;
-    transform: translateX(-60px);
-    transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
+    transform: perspective(1200px) rotateY(-38deg) translateZ(-120px) translateX(-70px);
+    transition: opacity 0.95s var(--ease-out-expo), transform 0.95s var(--ease-out-expo);
     will-change: opacity, transform;
 }
 
-.reveal-right {
+.reveal-right, .reveal-3d-right {
     opacity: 0;
-    transform: translateX(60px);
-    transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
+    transform: perspective(1200px) rotateY(38deg) translateZ(-120px) translateX(70px);
+    transition: opacity 0.95s var(--ease-out-expo), transform 0.95s var(--ease-out-expo);
     will-change: opacity, transform;
 }
 
-.reveal-scale {
+.reveal-scale, .reveal-3d-scale {
     opacity: 0;
-    transform: scale(0.85);
-    transition: opacity 0.85s var(--ease-out-expo), transform 0.85s var(--ease-out-expo);
+    transform: perspective(1200px) scale3d(0.7, 0.7, 0.7) translateZ(-180px) rotateX(-25deg);
+    transition: opacity 0.95s var(--ease-out-expo), transform 0.95s var(--ease-out-expo);
     will-change: opacity, transform;
 }
 
-.reveal.visible, .reveal-up.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible {
+.reveal.visible, .reveal-up.visible, .reveal-left.visible, .reveal-right.visible, .reveal-scale.visible,
+.reveal-3d-up.visible, .reveal-3d-left.visible, .reveal-3d-right.visible, .reveal-3d-scale.visible {
     opacity: 1;
-    transform: translate(0, 0) scale(1);
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateZ(0px) scale3d(1, 1, 1) translate(0, 0);
 }
 
 /* Stagger Delays */
