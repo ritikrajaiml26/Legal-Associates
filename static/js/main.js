@@ -36,21 +36,173 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ============ 1. Cinematic 3D/6D Intro Splash Screen (4 Seconds) ============
+    // ============ 1. GSAP Setup & Utilities ============
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ============ 1.5 Custom Cinematic Cursor (Desktop Only) ============
+    const cursorDot = document.getElementById('cursor-dot');
+    const cursorRing = document.getElementById('cursor-ring');
+    
+    if (cursorDot && cursorRing && !window.matchMedia("(hover: none)").matches && window.innerWidth > 768) {
+        document.body.classList.add('custom-cursor-active');
+        
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let dotX = mouseX;
+        let dotY = mouseY;
+        let ringX = mouseX;
+        let ringY = mouseY;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+            // Smooth lerping
+            dotX += (mouseX - dotX) * 0.5;
+            dotY += (mouseY - dotY) * 0.5;
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+
+            gsap.set(cursorDot, { x: dotX, y: dotY });
+            gsap.set(cursorRing, { x: ringX, y: ringY });
+        });
+
+        // Hover states for interactive elements
+        const interactiveElements = document.querySelectorAll('a, button, .glass-panel, input, textarea, select, .trust-box');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
+            el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
+        });
+    }
+
+    // Lightweight DOM-aware text splitter (preserves HTML structure)
+    function splitTextNodes(element) {
+        const nodes = Array.from(element.childNodes);
+        nodes.forEach(node => {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const text = node.textContent;
+                if (!text.trim()) return;
+                
+                const fragment = document.createDocumentFragment();
+                const words = text.split(/(\s+)/);
+                
+                words.forEach(word => {
+                    if (word.trim() === '') {
+                        fragment.appendChild(document.createTextNode(word));
+                    } else {
+                        const wordSpan = document.createElement('span');
+                        wordSpan.style.display = 'inline-block';
+                        wordSpan.style.overflow = 'hidden';
+                        wordSpan.style.verticalAlign = 'bottom';
+                        // wordSpan.style.marginRight = '0.15em'; // Optional if not splitting by \s+
+                        
+                        const innerSpan = document.createElement('span');
+                        innerSpan.innerText = word;
+                        innerSpan.style.display = 'inline-block';
+                        innerSpan.style.transform = 'translateY(110%)';
+                        innerSpan.classList.add('gsap-word-inner');
+                        
+                        wordSpan.appendChild(innerSpan);
+                        fragment.appendChild(wordSpan);
+                    }
+                });
+                element.replaceChild(fragment, node);
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                splitTextNodes(node);
+            }
+        });
+    }
+
+    function splitTextToSpans(selector) {
+        document.querySelectorAll(selector).forEach(el => {
+            el.style.opacity = '1';
+            splitTextNodes(el);
+        });
+        return document.querySelectorAll(`${selector} .gsap-word-inner`);
+    }
+
+    // ============ 2. Cinematic Intro & Hero Timeline ============
     const splash = document.getElementById('cinematic-intro-splash');
+    
+    window.threeJsReady = new Promise((resolve) => {
+        window.resolveThreeJs = resolve;
+    });
+
+    const heroWords = splitTextToSpans('.hero-title');
+
+    function playCinematicEntrance() {
+        const tl = gsap.timeline();
+
+        // Trigger Three.js cinematic entrance if ready
+        if (window.playThreeJsEntrance) {
+            window.playThreeJsEntrance();
+        }
+
+        // 1. Fade out splash
+        if (splash) {
+            tl.to(splash, {
+                opacity: 0,
+                scale: 1.05,
+                duration: 1.2,
+                ease: 'power3.inOut',
+                onComplete: () => {
+                    splash.style.visibility = 'hidden';
+                    document.documentElement.style.overflow = '';
+                    document.body.style.overflow = '';
+                }
+            }, 0);
+        }
+
+        // 2. Reveal Hero Title Words (Blur to Sharp, Slide Up)
+        if (heroWords.length > 0) {
+            tl.fromTo(heroWords, 
+                { y: '110%', filter: 'blur(8px)', opacity: 0 },
+                {
+                    y: '0%',
+                    filter: 'blur(0px)',
+                    opacity: 1,
+                    duration: 1.4,
+                    stagger: 0.04,
+                    ease: 'expo.out'
+                }, splash ? 0.6 : 0.2);
+        }
+
+        // 3. Reveal Hero description
+        tl.fromTo('.hero-description', 
+            { opacity: 0, y: 30, filter: 'blur(4px)' },
+            { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.2, ease: 'power3.out' },
+            '<0.4'
+        );
+
+        // 4. Reveal CTA Buttons
+        tl.fromTo('.hero-content .btn', 
+            { opacity: 0, y: 20, scale: 0.95 },
+            { opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15, ease: 'power3.out', clearProps: 'transform' },
+            '<0.2'
+        );
+
+        // 5. Reveal Trust Box with 3D Depth
+        tl.fromTo('.trust-box',
+            { opacity: 0, x: 50, rotationY: -20, rotationX: 10, scale: 0.95 },
+            { opacity: 1, x: 0, rotationY: 0, rotationX: 0, scale: 1, duration: 1.6, ease: 'expo.out', clearProps: 'transform' },
+            '<0.2'
+        );
+    }
+
     if (splash) {
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
 
-        setTimeout(() => {
-            splash.classList.add('fade-out');
-            document.documentElement.style.overflow = '';
-            document.body.style.overflow = '';
-
-            setTimeout(() => {
-                triggerScrollReveals();
-            }, 300);
-        }, 4000);
+        Promise.race([
+            window.threeJsReady,
+            new Promise(resolve => setTimeout(resolve, 2500))
+        ]).then(() => {
+            playCinematicEntrance();
+        });
+    } else {
+        playCinematicEntrance();
     }
 
     // ============ 2. Top Scroll Progress Line ============
@@ -74,52 +226,78 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function initThreeJSWebGL(canvas) {
+        const isMobile = window.innerWidth <= 768;
+        
         const scene = new THREE.Scene();
+        // Add fog for depth fading
+        scene.fog = new THREE.FogExp2(0x060b14, 0.02);
+
         const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 9;
 
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isMobile, powerPreference: "high-performance" });
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        // Adaptive pixel ratio: reduce on mobile to save battery
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, isMobile ? 1.25 : 2));
+        
+        // PBR Requirements
+        renderer.outputEncoding = THREE.sRGBEncoding;
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
 
         const group3D = new THREE.Group();
         scene.add(group3D);
 
-        const icoGeo = new THREE.IcosahedronGeometry(2.8, 1);
-        const icoMat = new THREE.MeshBasicMaterial({
-            color: 0xd4af37,
-            wireframe: true,
+        // --- PBR Materials ---
+        const glassMaterial = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff,
+            metalness: 0.1,
+            roughness: 0.05,
+            transmission: 0.9, // glass-like
+            thickness: 0.5,
+            envMapIntensity: 1.0,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.1,
             transparent: true,
-            opacity: 0.25
+            opacity: 1
         });
-        const mainMesh = new THREE.Mesh(icoGeo, icoMat);
+
+        const goldMaterial = new THREE.MeshStandardMaterial({
+            color: 0xffd700,
+            metalness: 1.0,
+            roughness: 0.2,
+            envMapIntensity: 2.0
+        });
+
+        const lightModeColor = 0x0284c7; // Sky blue
+        
+        // Reduced geometry complexity on mobile
+        const icoGeo = new THREE.IcosahedronGeometry(2.8, isMobile ? 0 : 1);
+        const mainMesh = new THREE.Mesh(icoGeo, glassMaterial);
+        
+        // Add a subtle wireframe overlay for tech/modern feel
+        const wireframeGeo = new THREE.WireframeGeometry(icoGeo);
+        const wireframeMat = new THREE.LineBasicMaterial({ color: 0xd4af37, transparent: true, opacity: 0.15 });
+        const wireframeMesh = new THREE.LineSegments(wireframeGeo, wireframeMat);
+        mainMesh.add(wireframeMesh);
+        
         group3D.add(mainMesh);
 
-        const coreGeo = new THREE.OctahedronGeometry(1.4, 0);
-        const coreMat = new THREE.MeshBasicMaterial({
-            color: 0xffd700,
-            wireframe: true,
-            transparent: true,
-            opacity: 0.4
-        });
-        const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+        const coreGeo = new THREE.OctahedronGeometry(1.2, 0);
+        const coreMesh = new THREE.Mesh(coreGeo, goldMaterial);
         group3D.add(coreMesh);
 
-        const torusGeo = new THREE.TorusGeometry(4.2, 0.03, 16, 100);
-        const torusMat = new THREE.MeshBasicMaterial({
-            color: 0xd4af37,
-            transparent: true,
-            opacity: 0.2
-        });
-        const torusRing1 = new THREE.Mesh(torusGeo, torusMat);
+        const torusGeo = new THREE.TorusGeometry(4.2, 0.02, isMobile ? 8 : 16, isMobile ? 50 : 100);
+        const torusRing1 = new THREE.Mesh(torusGeo, goldMaterial);
         torusRing1.rotation.x = Math.PI / 3;
         group3D.add(torusRing1);
 
-        const torusRing2 = new THREE.Mesh(torusGeo, torusMat);
+        const torusRing2 = new THREE.Mesh(torusGeo, glassMaterial);
         torusRing2.rotation.y = Math.PI / 4;
         group3D.add(torusRing2);
 
-        const particleCount = 380;
+        // Particles
+        const particleCount = isMobile ? 150 : 400;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
 
@@ -132,70 +310,190 @@ document.addEventListener('DOMContentLoaded', () => {
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const particleMat = new THREE.PointsMaterial({
             color: 0xffd700,
-            size: 0.11,
+            size: isMobile ? 0.08 : 0.11,
             transparent: true,
-            opacity: 0.55
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
         });
         const particleSystem = new THREE.Points(particleGeo, particleMat);
         scene.add(particleSystem);
+
+        // --- Realistic Lighting ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0); // starts dark
+        scene.add(ambientLight);
+
+        const dirLight = new THREE.DirectionalLight(0xfff5e6, 0); // starts dark
+        dirLight.position.set(5, 10, 7);
+        scene.add(dirLight);
+
+        const pointLight = new THREE.PointLight(0xd4af37, 0, 20); // starts dark
+        pointLight.position.set(-5, -2, 5);
+        scene.add(pointLight);
+        
+        const bluePointLight = new THREE.PointLight(0x0284c7, 0, 20); // starts dark
+        bluePointLight.position.set(5, -2, 5);
+        scene.add(bluePointLight);
+
+        // --- Setup Initial State for Cinematic Intro ---
+        group3D.scale.set(0.8, 0.8, 0.8);
+        group3D.position.y = 2;
+
+        window.playThreeJsEntrance = () => {
+            const isLight = htmlEl.getAttribute('data-theme') === 'light';
+            
+            gsap.to(group3D.scale, { x: 1, y: 1, z: 1, duration: 2.5, ease: 'expo.out' });
+            gsap.to(group3D.position, { y: 0, duration: 2.5, ease: 'expo.out' });
+            
+            gsap.to(ambientLight, { intensity: 0.6, duration: 2, ease: 'power2.inOut' });
+            gsap.to(dirLight, { intensity: 2.5, duration: 2, ease: 'power2.inOut' });
+            
+            if (isLight) {
+                gsap.to(bluePointLight, { intensity: 5, duration: 2, ease: 'power2.inOut' });
+            } else {
+                gsap.to(pointLight, { intensity: 5, duration: 2, ease: 'power2.inOut' });
+            }
+        };
+
+        // --- Post-Processing / Bloom Setup ---
+        let composer, bloomPass;
+        if (!isMobile && typeof THREE.EffectComposer !== 'undefined') {
+            const renderScene = new THREE.RenderPass(scene, camera);
+            bloomPass = new THREE.UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.2, 0.4, 0.85);
+            bloomPass.threshold = 0.2;
+            bloomPass.strength = 0.7; // Enhanced for gold highlights
+            bloomPass.radius = 0.5;
+
+            composer = new THREE.EffectComposer(renderer);
+            composer.addPass(renderScene);
+            composer.addPass(bloomPass);
+        }
 
         let scrollY = 0;
         let targetScrollY = 0;
         let mouseX = 0;
         let mouseY = 0;
+        let isSceneVisible = true;
 
         window.addEventListener('scroll', () => {
             targetScrollY = window.scrollY;
-        });
+        }, { passive: true });
 
         window.addEventListener('mousemove', (e) => {
             mouseX = (e.clientX / window.innerWidth - 0.5) * 0.8;
             mouseY = (e.clientY / window.innerHeight - 0.5) * 0.8;
-        });
+        }, { passive: true });
 
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
+            if (composer) composer.setSize(window.innerWidth, window.innerHeight);
+        }, { passive: true });
+
+        // IntersectionObserver for pausing WebGL when out of view
+        const observer = new IntersectionObserver((entries) => {
+            isSceneVisible = entries[0].isIntersecting;
         });
+        // We observe the body/hero, if we scroll far past it, we can pause. 
+        // For simplicity, we just check scroll position in the render loop.
+
+        // Resolve the global promise since scene is initialized
+        if (window.resolveThreeJs) {
+            window.resolveThreeJs();
+        }
+
+        const clock = new THREE.Clock();
 
         function animate() {
             requestAnimationFrame(animate);
 
-            const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
-            if (isLightMode) {
-                icoMat.color.setHex(0x0284c7);
-                coreMat.color.setHex(0x38bdf8);
-                torusMat.color.setHex(0x0284c7);
-                particleMat.color.setHex(0x0284c7);
-            } else {
-                icoMat.color.setHex(0xd4af37);
-                coreMat.color.setHex(0xffd700);
-                torusMat.color.setHex(0xd4af37);
-                particleMat.color.setHex(0xffd700);
+            // Pause WebGL rendering if user has scrolled very far down (performance)
+            if (targetScrollY > window.innerHeight * 1.5) {
+                return;
             }
 
+            const time = clock.getElapsedTime();
+            const isLightMode = htmlEl.getAttribute('data-theme') === 'light';
+            
+            // Smoothly animate theme transitions
+            if (isLightMode) {
+                scene.fog.color.setHex(0xe0f2fe);
+                goldMaterial.color.setHex(0x0284c7);
+                particleMat.color.setHex(0x0284c7);
+                wireframeMat.color.setHex(0x0284c7);
+                // We use pointLights for entrance, but here ensure we manage them if we want
+                if (bloomPass) bloomPass.strength = 0.3; // Less bloom in daylight
+            } else {
+                scene.fog.color.setHex(0x060b14);
+                goldMaterial.color.setHex(0xffd700);
+                particleMat.color.setHex(0xffd700);
+                wireframeMat.color.setHex(0xd4af37);
+                if (bloomPass) bloomPass.strength = 0.7; // More bloom in dark mode
+            }
+
+            // Smooth scroll interpolation
             scrollY += (targetScrollY - scrollY) * 0.05;
 
-            mainMesh.rotation.x += 0.003;
-            mainMesh.rotation.y += 0.005;
+            // Subtle continuous motion
+            mainMesh.rotation.x = time * 0.1;
+            mainMesh.rotation.y = time * 0.15;
 
-            coreMesh.rotation.x -= 0.004;
-            coreMesh.rotation.y -= 0.006;
+            coreMesh.rotation.x = -time * 0.2;
+            coreMesh.rotation.y = -time * 0.25;
 
-            torusRing1.rotation.z += 0.002;
-            torusRing2.rotation.z -= 0.002;
+            torusRing1.rotation.z = time * 0.1;
+            torusRing2.rotation.z = -time * 0.1;
 
-            group3D.rotation.y = scrollY * 0.0015 + mouseX;
-            group3D.rotation.x = scrollY * 0.001 + mouseY;
-            group3D.position.y = -scrollY * 0.0025;
+            // Camera/Group scroll interaction (Parallax) via GSAP ScrollTrigger
+            // We use ScrollTrigger instead of raw scrollY for smoother cinematic control
+            // The raw scrollY code is removed here in favor of GSAP
 
-            particleSystem.rotation.y = scrollY * 0.0005;
+            particleSystem.rotation.y = time * 0.05;
 
-            renderer.render(scene, camera);
+            if (composer) {
+                composer.render();
+            } else {
+                renderer.render(scene, camera);
+            }
         }
 
         animate();
+
+        // ---------------- GSAP Three.js Connection ----------------
+        // Cinematic Scroll Choreography for 3D Scene
+        const mm = gsap.matchMedia();
+        
+        mm.add("(min-width: 769px)", () => {
+            // Desktop 3D Scroll Choreography
+            const tl3D = gsap.timeline({
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1.5
+                }
+            });
+
+            // Choreograph 3D object to complement sections
+            tl3D.to(group3D.position, { y: 2, z: -3, ease: 'power1.inOut' }, 0)
+                .to(group3D.rotation, { x: Math.PI * 0.15, y: Math.PI * 0.6, ease: 'power1.inOut' }, 0)
+                .to(group3D.position, { y: -1, z: 1, ease: 'power1.inOut' }, 0.5)
+                .to(group3D.rotation, { x: -Math.PI * 0.1, y: Math.PI * 1.2, ease: 'power1.inOut' }, 0.5);
+        });
+
+        mm.add("(max-width: 768px)", () => {
+            // Mobile: reduced motion, simple rotation
+            gsap.to(group3D.rotation, {
+                y: Math.PI * 0.5,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: 'body',
+                    start: 'top top',
+                    end: 'bottom bottom',
+                    scrub: 1
+                }
+            });
+        });
     }
 
     // ============ 4. 8D Sky Blue Liquid Water Ripple & Caustics Canvas ============
@@ -324,47 +622,185 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ============ 7. Advanced 3D Scroll Reveal Animations ============
-    document.querySelectorAll('.stagger-children').forEach(parent => {
-        Array.from(parent.children).forEach((child, index) => {
-            child.classList.add(`delay-${(index % 5) + 1}`);
-            if (!child.classList.contains('reveal') &&
-                !child.classList.contains('reveal-up') &&
-                !child.classList.contains('reveal-left') &&
-                !child.classList.contains('reveal-right') &&
-                !child.classList.contains('reveal-scale') &&
-                !child.classList.contains('reveal-3d-up')) {
-                child.classList.add('reveal-3d-up');
-            }
-        });
-    });
-
-    const revealSelector = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-3d-up, .reveal-3d-left, .reveal-3d-right, .reveal-3d-scale';
+    // ============ 7. Cinematic Scroll Choreography (GSAP ScrollTrigger) ============
     
-    function triggerScrollReveals() {
-        const revealElements = document.querySelectorAll(revealSelector);
-        revealElements.forEach(el => {
-            const rect = el.getBoundingClientRect();
-            if (rect.top < window.innerHeight * 0.92) {
-                el.classList.add('visible');
-            }
-        });
-    }
+    // Split section titles
+    splitTextToSpans('.section-title');
 
-    const revealElements = document.querySelectorAll(revealSelector);
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
+    // Create a match media for responsive animations
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 769px)", () => {
+        // Desktop: High impact stagger reveals
+        
+        // 1. Animate section titles when they enter viewport
+        gsap.utils.toArray('.section-title').forEach(title => {
+            const words = title.querySelectorAll('.gsap-word-inner');
+            if (words.length) {
+                gsap.to(words, {
+                    y: '0%',
+                    duration: 1,
+                    stagger: 0.03,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                });
             }
         });
-    }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+
+        // 2. Cinematic Section Choreography (Unique Motion per Section)
+        
+        // About Section (Mask & Blur)
+        const aboutPanels = document.querySelectorAll('#about .glass-panel, .about-section .glass-panel');
+        if (aboutPanels.length > 0) {
+            gsap.fromTo(aboutPanels, 
+                { opacity: 0, x: -30, filter: 'blur(8px)' },
+                { 
+                    opacity: 1, x: 0, filter: 'blur(0px)', duration: 1.5, stagger: 0.2, ease: 'power3.out',
+                    scrollTrigger: { trigger: aboutPanels[0], start: 'top 80%', toggleActions: 'play none none reverse' }
+                }
+            );
+        }
+
+        // Practice Areas (Scale & Stagger)
+        const practiceCards = document.querySelectorAll('.practice-card, .service-card-modern');
+        if (practiceCards.length > 0) {
+            gsap.fromTo(practiceCards, 
+                { opacity: 0, y: 50, scale: 0.95 },
+                { 
+                    opacity: 1, y: 0, scale: 1, duration: 1.2, stagger: 0.1, ease: 'back.out(1.2)',
+                    scrollTrigger: { trigger: practiceCards[0].closest('section'), start: 'top 75%', toggleActions: 'play none none reverse' }
+                }
+            );
+        }
+
+        // Core Values, Stats, and Team (3D Depth)
+        const coreCards = document.querySelectorAll('.core-value-card, .advocate-card, .counter-card');
+        if (coreCards.length > 0) {
+            gsap.fromTo(coreCards,
+                { opacity: 0, rotationY: 15, y: 40 },
+                {
+                    opacity: 1, rotationY: 0, y: 0, duration: 1.4, stagger: 0.15, ease: 'expo.out',
+                    scrollTrigger: { trigger: coreCards[0].closest('section'), start: 'top 80%', toggleActions: 'play none none reverse' }
+                }
+            );
+        }
+
+        // Catch-all for any remaining glass panels (Contact, forms)
+        const otherPanels = document.querySelectorAll('section:not(#about) .glass-panel:not(.trust-box)');
+        if (otherPanels.length > 0) {
+            gsap.fromTo(otherPanels,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0, duration: 1.2, stagger: 0.1, ease: 'power2.out',
+                    scrollTrigger: { trigger: otherPanels[0].closest('section'), start: 'top 80%', toggleActions: 'play none none reverse' }
+                }
+            );
+        }
+
+        // 3. Cinematic Section Transitions (Parallax images)
+        gsap.utils.toArray('.hero-ambient-blob-1, .hero-ambient-blob-2').forEach(blob => {
+            gsap.to(blob, {
+                yPercent: 30,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        });
+
+        // 4. Cinematic Mouse Depth / Parallax (Desktop)
+        const heroSection = document.querySelector('.hero-section');
+        const heroContent = document.querySelector('.hero-content');
+        const trustBox = document.querySelector('.trust-box');
+
+        if (heroSection) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const x = (e.clientX / window.innerWidth - 0.5);
+                const y = (e.clientY / window.innerHeight - 0.5);
+
+                // Very subtle movement for content, medium for trust box
+                gsap.to(heroContent, { x: x * -15, y: y * -15, duration: 1.5, ease: 'power2.out' });
+                if (trustBox) {
+                    gsap.to(trustBox, { 
+                        x: x * 25, 
+                        y: y * 25, 
+                        rotationY: x * 10, 
+                        rotationX: -y * 10, 
+                        duration: 1.5, 
+                        ease: 'power2.out' 
+                    });
+                }
+            });
+            
+            heroSection.addEventListener('mouseleave', () => {
+                gsap.to(heroContent, { x: 0, y: 0, duration: 1.5, ease: 'power2.out' });
+                if (trustBox) {
+                    gsap.to(trustBox, { x: 0, y: 0, rotationY: 0, rotationX: 0, duration: 1.5, ease: 'power2.out' });
+                }
+            });
+        }
+
+        // 5. Hero Scroll Transition (Scene 01 -> Scene 02)
+        gsap.to('.hero-section', {
+            scale: 0.96,
+            opacity: 0,
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.hero-section',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: true
+            }
+        });
+
+        // 6. Magnetic CTA Buttons
+        const magneticBtns = document.querySelectorAll('.hero-content .btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, { x: x * 0.25, y: y * 0.25, duration: 0.4, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.3)' });
+            });
+        });
     });
 
-    revealElements.forEach(el => revealObserver.observe(el));
+    mm.add("(max-width: 768px)", () => {
+        // Mobile: Lightweight fade ups (transform/opacity only)
+        
+        gsap.utils.toArray('.section-title .gsap-word-inner').forEach(word => {
+            gsap.set(word, { y: '0%' }); // Disable complex text split on mobile for perf
+        });
+
+        const allRevealElements = gsap.utils.toArray('.glass-panel, .practice-card, .core-value-card, .service-card-modern, .advocate-card, .section-title, .section-label');
+        
+        allRevealElements.forEach(el => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 20 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.8,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 90%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+    });
 
     // ============ 8. Smooth Animated Counters ============
     const counters = document.querySelectorAll('.counter-number');
