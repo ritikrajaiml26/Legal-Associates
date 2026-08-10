@@ -1,6 +1,6 @@
 /* ==========================================================================
-   LexRP Advocates & Consultants
-   "Royal Obsidian & Frosted Glass Touch" - Ultra Luxury Modern 3D Design System
+   LexRP Law Firm
+   "Royal Obsidian & 6D Cinematic Glass Touch" - Design & Animation System
    ========================================================================== */
 
 /* ---------- Google Fonts Import ---------- */
@@ -10,15 +10,15 @@
 :root {
     --bg-dark: #060b14;
     --bg-dark-secondary: #0a1120;
-    --bg-card-glass: rgba(15, 23, 42, 0.65);
-    --bg-card-glass-hover: rgba(22, 34, 60, 0.85);
+    --bg-card-glass: rgba(15, 23, 42, 0.7);
+    --bg-card-glass-hover: rgba(22, 34, 60, 0.9);
     --bg-glass-input: rgba(255, 255, 255, 0.05);
 
     --gold: #d4af37;
     --gold-light: #f3e5ab;
     --gold-bright: #ffd700;
     --gold-dark: #aa8625;
-    --gold-glow: rgba(212, 175, 55, 0.4);
+    --gold-glow: rgba(212, 175, 55, 0.45);
 
     --navy-light: #1e293b;
     --text-white: #ffffff;
@@ -31,10 +31,9 @@
     --gradient-gold: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #aa8625 100%);
     --gradient-gold-text: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #d4af37 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
-    --gradient-card: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 17, 32, 0.9) 100%);
 
     --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    --shadow-gold-glow: 0 10px 40px rgba(212, 175, 55, 0.35);
+    --shadow-gold-glow: 0 10px 40px rgba(212, 175, 55, 0.4);
 
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Inter', sans-serif;
@@ -42,6 +41,132 @@
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --border-radius-lg: 20px;
     --border-radius-md: 14px;
+}
+
+/* ---------- 1. 3D/6D Cinematic Intro Splash Screen (4 Seconds) ---------- */
+#cinematic-intro-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #0f172a 0%, #060b14 85%);
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    perspective: 1200px;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s ease;
+}
+
+#cinematic-intro-splash.fade-out {
+    opacity: 0;
+    transform: scale(1.15) translateZ(100px);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.splash-content {
+    position: relative;
+    z-index: 2;
+    transform-style: preserve-3d;
+    animation: splash3DPulse 4s ease-in-out forwards;
+}
+
+@keyframes splash3DPulse {
+    0% { transform: translateZ(-250px) rotateX(20deg) scale(0.65); opacity: 0; }
+    25% { transform: translateZ(0px) rotateX(0deg) scale(1); opacity: 1; }
+    85% { transform: translateZ(60px) scale(1.06); opacity: 1; }
+    100% { transform: translateZ(120px) scale(1.12); opacity: 1; }
+}
+
+.splash-3d-logo {
+    position: relative;
+    display: inline-block;
+}
+
+.splash-icon-wrapper {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.25), rgba(15, 23, 42, 0.95));
+    border: 2px solid var(--gold-bright);
+    border-radius: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--gold-bright);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.65), inset 0 0 25px rgba(255, 215, 0, 0.35);
+    animation: icon3DRotate 4s ease-in-out infinite;
+}
+
+@keyframes icon3DRotate {
+    0% { transform: rotateY(0deg) rotateX(0deg); }
+    50% { transform: rotateY(180deg) rotateX(15deg); }
+    100% { transform: rotateY(360deg) rotateX(0deg); }
+}
+
+.splash-ring-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 230px;
+    height: 230px;
+    border: 2px dashed rgba(255, 215, 0, 0.45);
+    border-radius: 50%;
+    animation: ringSpin 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes ringSpin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.splash-title {
+    font-family: var(--font-serif);
+    font-size: 4.2rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 35px rgba(255, 215, 0, 0.6);
+    background: linear-gradient(135deg, #ffffff 0%, #ffd700 50%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.splash-subtitle {
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+}
+
+.splash-timer-bar-container {
+    width: 280px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    margin: 2.2rem auto 0;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+}
+
+.splash-timer-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #d4af37, #ffd700, #ffffff);
+    animation: fillSplashTimer 4s linear forwards;
+}
+
+@keyframes fillSplashTimer {
+    0% { width: 0%; }
+    100% { width: 100%; }
 }
 
 /* ---------- WebGL 3D Interactive Canvas ---------- */
@@ -76,24 +201,28 @@
     100% { background-position: 200% 0%; }
 }
 
-/* ---------- Global Body & Reset ---------- */
+/* ---------- Global Body & Reset (Fixed Overflow Bug) ---------- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-html {
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    background-color: var(--bg-dark);
+    margin: 0;
+    padding: 0;
 }
 
 body {
     font-family: var(--font-sans);
     color: var(--text-body);
-    background-color: var(--bg-dark);
     line-height: 1.8;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -120,11 +249,11 @@ body::before {
 body::after {
     content: '';
     position: fixed;
-    bottom: -20%;
+    bottom: 0;
     right: -10%;
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, rgba(30, 58, 138, 0.25) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(30, 58, 138, 0.22) 0%, rgba(0,0,0,0) 70%);
     filter: blur(140px);
     z-index: -2;
     pointer-events: none;
@@ -829,13 +958,15 @@ section:hover .section-divider {
 .page-header .breadcrumb-item.active { color: var(--text-muted); }
 .page-header .breadcrumb-item + .breadcrumb-item::before { color: rgba(255,255,255,0.4); }
 
-/* ---------- Footer High-Contrast Visibility Fix ---------- */
+/* ---------- Footer Fixed Layout & High-Contrast Visibility Fix ---------- */
 .footer-section {
     background: #060b14 !important;
     color: #e2e8f0 !important;
     border-top: 1px solid var(--border-glass);
     position: relative;
     z-index: 5;
+    margin-bottom: 0 !important;
+    padding-bottom: 2.5rem !important;
 }
 
 .footer-section .footer-title,
@@ -1017,6 +1148,9 @@ section:hover .section-divider {
 }
 
 @media (max-width: 575.98px) {
+    .splash-title { font-size: 2.6rem; }
+    .splash-subtitle { font-size: 0.85rem; letter-spacing: 0.25em; }
+    .splash-icon-wrapper { width: 95px; height: 95px; font-size: 2.8rem; }
     .hero-title { font-size: 1.95rem; }
     .emergency-badge { padding: 0.55rem 1rem; bottom: 1rem; left: 1rem; }
     .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 1rem; right: 1rem; }

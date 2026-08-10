@@ -1,9 +1,28 @@
 /* ==========================================================================
-   LexRP Advocates & Consultants
-   "Royal Obsidian & Frosted Glass Touch" - 3D WebGL & Scroll Animation Engine
+   LexRP Law Firm
+   "Royal Obsidian & 6D Cinematic Glass Touch" - 3D/6D Animation Engine
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ============ 0. Cinematic 3D/6D Intro Splash Screen (4 Seconds) ============
+    const splash = document.getElementById('cinematic-intro-splash');
+    if (splash) {
+        // Prevent scrolling while splash screen is active
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+
+        setTimeout(() => {
+            splash.classList.add('fade-out');
+            document.documentElement.style.overflow = '';
+            document.body.style.overflow = '';
+
+            // Trigger initial reveal animations after splash fade-out
+            setTimeout(() => {
+                triggerScrollReveals();
+            }, 300);
+        }, 4000);
+    }
 
     // ============ 1. Top Scroll Progress Line ============
     const progressBar = document.createElement('div');
@@ -13,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
+        const scrolled = (winScroll / (height || 1)) * 100;
         if (progressBar) {
             progressBar.style.width = scrolled + '%';
         }
@@ -76,7 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         group3D.add(torusRing2);
 
         // 3. 3D Particle Starfield
-        const particleCount = 350;
+        const particleCount = 380;
         const particleGeo = new THREE.BufferGeometry();
         const positions = new Float32Array(particleCount * 3);
 
@@ -89,9 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
         particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
         const particleMat = new THREE.PointsMaterial({
             color: 0xffd700,
-            size: 0.1,
+            size: 0.11,
             transparent: true,
-            opacity: 0.5
+            opacity: 0.55
         });
         const particleSystem = new THREE.Points(particleGeo, particleMat);
         scene.add(particleSystem);
@@ -207,8 +226,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     const revealSelector = '.reveal, .reveal-up, .reveal-left, .reveal-right, .reveal-scale, .reveal-3d-up, .reveal-3d-left, .reveal-3d-right, .reveal-3d-scale';
-    const revealElements = document.querySelectorAll(revealSelector);
+    
+    function triggerScrollReveals() {
+        const revealElements = document.querySelectorAll(revealSelector);
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.92) {
+                el.classList.add('visible');
+            }
+        });
+    }
 
+    const revealElements = document.querySelectorAll(revealSelector);
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
