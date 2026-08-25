@@ -413,7 +413,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.01em;
 }
 
-p { color: var(--text-body); }
+p, .text-body { color: var(--text-body) !important; }
 
 a { text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
 
@@ -461,6 +461,7 @@ a { text-decoration: none; transition: all 0.3s var(--ease-out-expo); }
 .text-gold { color: var(--gold) !important; }
 .text-gold-light { color: var(--gold-light) !important; }
 .text-gold-bright { color: var(--gold-bright) !important; }
+.bg-gold { background-color: var(--gold) !important; color: #060b14 !important; }
 .text-white { color: var(--text-white) !important; }
 .text-muted { color: var(--text-muted) !important; }
 
