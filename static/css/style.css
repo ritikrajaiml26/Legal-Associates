@@ -1230,6 +1230,28 @@ footer.footer-section {
     color: #ffd700 !important;
 }
 
+.developer-link {
+    color: #ffd700 !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    display: inline-block;
+}
+
+.developer-link:hover {
+    color: #ffffff !important;
+    text-decoration: underline !important;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+}
+
+[data-theme="light"] .developer-link {
+    color: #0284c7 !important;
+}
+
+[data-theme="light"] .developer-link:hover {
+    color: #0369a1 !important;
+}
+
 .footer-section hr {
     border-color: rgba(255, 255, 255, 0.25) !important;
 }
