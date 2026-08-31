@@ -111,7 +111,7 @@ class Command(BaseCommand):
                 'languages': 'Hindi, English',
                 'bar_council_registration': 'BR-Adv-9097/2022',
                 'phone': '+91-9097578634',
-                'email': 'advrupesh2022@gmail.com',
+                'email': 'lexrpadvocates@gmail.com',
                 'bio': 'Advocate Rupesh Kumar Chaudhary is a distinguished lawyer practicing at Civil Court, Motihari and the District Bar Association. With over 15 years of experience in representing clients across complex civil disputes, revenue matters, criminal trials, and familial conflicts, he has established a track record of ethical advocacy, thorough preparation, and successful resolution. He maintains sitting offices in Motihari Civil Court and permanent residency in Pipra Kothi, East Champaran, Bihar.'
             }
         ]
