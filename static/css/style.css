@@ -1256,42 +1256,7 @@ footer.footer-section {
     border-color: rgba(255, 255, 255, 0.25) !important;
 }
 
-/* ---------- Floating Emergency & WhatsApp Badges Glass ---------- */
-.emergency-badge {
-    position: fixed;
-    bottom: 2rem;
-    left: 2rem;
-    z-index: 1045;
-    background: linear-gradient(135deg, #dc2626, #991b1b);
-    border: 1px solid rgba(254, 202, 202, 0.4);
-    color: var(--text-white) !important;
-    padding: 0.75rem 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    cursor: pointer;
-    box-shadow: 0 10px 35px rgba(220, 38, 38, 0.5);
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.35s var(--ease-out-expo);
-    animation: pulseDanger 3s infinite;
-}
-
-@keyframes pulseDanger {
-    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
-    70% { box-shadow: 0 0 0 16px rgba(220, 38, 38, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
-}
-
-.emergency-badge:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(220, 38, 38, 0.7);
-}
-
-.emergency-icon {
-    font-size: 1.4rem;
-    color: #ffd700;
-}
+/* ---------- Floating WhatsApp Badge Glass ---------- */
 
 .whatsapp-float {
     position: fixed;
@@ -1437,7 +1402,6 @@ footer.footer-section {
     .splash-subtitle { font-size: 0.85rem; letter-spacing: 0.25em; }
     .splash-icon-wrapper { width: 95px; height: 95px; font-size: 2.8rem; }
     .hero-title { font-size: 1.95rem; }
-    .emergency-badge { padding: 0.55rem 1rem; bottom: 1rem; left: 1rem; }
     .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 1rem; right: 1rem; }
     .back-to-top { bottom: 5rem; right: 1rem; width: 42px; height: 42px; }
 }
