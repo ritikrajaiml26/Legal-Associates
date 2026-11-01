@@ -1,110 +1,289 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Careers - Join Our Legal Team - LexRP Advocates{% endblock %}
+{% block title %}Careers & Legal Internship - Nyayasetu Law Firm{% endblock %}
 
 {% block content %}
     <!-- Page Header -->
     <header class="page-header">
-        <div class="container">
-            <h1 class="font-serif fw-bold text-white mb-2">Careers at LexRP Advocates</h1>
+        <div class="container reveal-up">
+            <h1 class="font-serif fw-bold text-white mb-2">Careers & Legal Internship</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Careers</li>
+                    <li class="breadcrumb-item active" aria-current="page">Careers & Internship</li>
                 </ol>
             </nav>
         </div>
     </header>
 
-    <!-- Careers Content -->
+    <!-- Main Careers Section -->
     <section class="py-5">
         <div class="container py-4">
-            <div class="row g-5">
-                <!-- Left: Openings info -->
-                <div class="col-lg-6">
-                    <p class="section-label">Join Us</p>
-                    <h2 class="section-title">Work With Us</h2>
-                    <hr class="section-divider mb-4">
-                    <p class="text-muted leading-relaxed mb-4">
-                        We value hard work, integrity, professionalism, and dedication to justice. If you are a skilled legal professional, junior advocate, or law student seeking internships in East Champaran / Motihari, we invite you to join our growing legal team.
-                    </p>
-
-                    <h4 class="font-serif text-navy fw-bold mb-3">Open Opportunities</h4>
-                    <div class="d-flex flex-column gap-3 mb-4">
-                        <div class="border p-3 rounded bg-light">
-                            <h6 class="text-navy fw-bold mb-1 small">Junior Associate Advocate</h6>
-                            <p class="small text-muted mb-1"><strong>Exp:</strong> 1-2 Years in Civil/Criminal litigation</p>
-                            <p class="small text-muted mb-0"><strong>Location:</strong> Civil Court, Motihari</p>
+            
+            <!-- Hero Announcement Banner -->
+            <div class="glass-panel p-4 p-md-5 mb-5 reveal-up" data-spotlight>
+                <div class="row align-items-center g-4">
+                    <div class="col-lg-8">
+                        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(212, 175, 55, 0.15); border: 1px solid var(--gold-bright);">
+                            <i class="fa-solid fa-graduation-cap text-gold-bright"></i>
+                            <span class="text-gold-bright small fw-bold text-uppercase tracking-wider">Internship Programme 2026</span>
                         </div>
-                        <div class="border p-3 rounded bg-light">
-                            <h6 class="text-navy fw-bold mb-1 small">Legal Intern (Law Student)</h6>
-                            <p class="small text-muted mb-1"><strong>Duration:</strong> 1 to 3 months</p>
-                            <p class="small text-muted mb-0"><strong>Location:</strong> Civil Court Office / Remote Research</p>
-                        </div>
-                        <div class="border p-3 rounded bg-light">
-                            <h6 class="text-navy fw-bold mb-1 small">Office Assistant / Clerk</h6>
-                            <p class="small text-muted mb-1"><strong>Skills:</strong> Typing, file management, Hindi & English speaking</p>
-                            <p class="small text-muted mb-0"><strong>Location:</strong> Pipra Kothi Permanent Office</p>
+                        <h2 class="font-serif text-white fw-bold mb-3">NYAYASETU LAW FIRM</h2>
+                        <p class="text-gold-light fst-italic fs-5 mb-3">“A Strong Bridge of Access to Justice.”</p>
+                        <p class="text-body lead fs-6 mb-4" style="line-height: 1.8;">
+                            Nyayasetu Law Firm invites applications from enthusiastic and dedicated law students seeking practical exposure to litigation, legal research, drafting and court proceedings. Please complete the following form carefully. Shortlisted candidates may be contacted for an interview or further interaction.
+                        </p>
+                        
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSciYi1Ba8mbkBpw-WaK677KRdUuRoZdBlod6RoWoPEA2RmrRw/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-gold px-4 py-2 fw-bold shadow-lg">
+                                <i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Open Google Form in New Window
+                            </a>
+                            <a href="#internship-application-section" class="btn btn-outline-white px-4 py-2 fw-bold">
+                                <i class="fa-solid fa-file-pen me-2"></i>Fill Form on this Page
+                            </a>
                         </div>
                     </div>
-                </div>
 
-                <!-- Right: Application Form -->
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm p-4 bg-white">
-                        <h4 class="font-serif text-navy fw-bold mb-3">Apply Online</h4>
-                        
-                        <!-- Django Messages Alert -->
-                        {% if messages %}
-                            {% for message in messages %}
-                                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show small" role="alert">
-                                    {{ message }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-
-                        <form method="post" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label class="form-label small fw-bold">Full Name *</label>
-                                    <input type="text" class="form-control" name="name" required placeholder="Your full name">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label small fw-bold">Email Address *</label>
-                                    <input type="email" class="form-control" name="email" required placeholder="name@email.com">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label small fw-bold">Phone Number *</label>
-                                    <input type="tel" class="form-control" name="phone" required placeholder="10-digit mobile number">
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="form-label small fw-bold">Position Applied For *</label>
-                                    <select class="form-select" name="position" required>
-                                        <option value="" selected disabled>Select position</option>
-                                        <option value="Junior Associate">Junior Associate Advocate</option>
-                                        <option value="Legal Intern">Legal Intern</option>
-                                        <option value="Office Assistant">Office Assistant / Clerk</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="form-label small fw-bold">Upload Resume / CV (PDF format) *</label>
-                                    <input type="file" class="form-control" name="resume" accept=".pdf" required>
-                                </div>
-                                <div class="col-md-12">
-                                    <label class="form-label small fw-bold">Cover Letter / Message</label>
-                                    <textarea class="form-control" name="cover_letter" rows="4" placeholder="Describe why you want to join our firm"></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-navy w-100 py-3">Submit Application</button>
-                                </div>
-                            </div>
-                        </form>
+                    <div class="col-lg-4">
+                        <div class="p-4 rounded-4" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass-bright);">
+                            <h5 class="font-serif text-gold-bright fw-bold mb-3 border-bottom border-warning pb-2">
+                                <i class="fa-solid fa-building-columns me-2"></i>Chamber & Contact Info
+                            </h5>
+                            <ul class="list-unstyled small mb-0">
+                                <li class="mb-3">
+                                    <strong class="text-white d-block mb-1"><i class="fa-solid fa-user-tie text-gold me-2"></i>Founder:</strong>
+                                    <span class="text-muted">Rupesh Kumar Chaudhary, Advocate</span>
+                                </li>
+                                <li class="mb-3">
+                                    <strong class="text-white d-block mb-1"><i class="fa-solid fa-location-dot text-gold me-2"></i>Sitting Chamber:</strong>
+                                    <span class="text-muted">New Hall No. 01, District Bar Association, Civil Court, Motihari, East Champaran, Bihar - 845401</span>
+                                </li>
+                                <li class="mb-3">
+                                    <strong class="text-white d-block mb-1"><i class="fa-solid fa-phone text-gold me-2"></i>Mobile / WhatsApp:</strong>
+                                    <a href="tel:+919097578634" class="text-gold-bright fw-bold text-decoration-none">+91-9097578634</a>
+                                </li>
+                                <li class="mb-0">
+                                    <strong class="text-white d-block mb-1"><i class="fa-solid fa-envelope text-gold me-2"></i>Careers Email:</strong>
+                                    <a href="mailto:newsfirm26@gmail.com" class="text-gold-bright text-decoration-none">newsfirm26@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Internship Practical Exposure Highlights -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-3 col-sm-6">
+                    <div class="glass-panel p-4 h-100 text-center" data-spotlight data-tilt>
+                        <i class="fa-solid fa-gavel text-gold-bright fs-2 mb-3"></i>
+                        <h6 class="text-white fw-bold mb-2">Court Proceedings</h6>
+                        <p class="small text-muted mb-0">Live hearings, trials & chamber conferences at Civil Court Motihari.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="glass-panel p-4 h-100 text-center" data-spotlight data-tilt>
+                        <i class="fa-solid fa-file-contract text-gold-bright fs-2 mb-3"></i>
+                        <h6 class="text-white fw-bold mb-2">Legal Drafting</h6>
+                        <p class="small text-muted mb-0">Drafting plaints, bail applications, affidavits, written statements & notices.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="glass-panel p-4 h-100 text-center" data-spotlight data-tilt>
+                        <i class="fa-solid fa-magnifying-glass text-gold-bright fs-2 mb-3"></i>
+                        <h6 class="text-white fw-bold mb-2">Case Law Research</h6>
+                        <p class="small text-muted mb-0">Detailed precedent analysis using SCC, AIR & High Court judgments.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="glass-panel p-4 h-100 text-center" data-spotlight data-tilt>
+                        <i class="fa-solid fa-handshake text-gold-bright fs-2 mb-3"></i>
+                        <h6 class="text-white fw-bold mb-2">Chamber Practice</h6>
+                        <p class="small text-muted mb-0">Client counseling, case strategy formulation & real litigation exposure.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Section with Tabs -->
+            <div id="internship-application-section" class="scroll-target pt-2">
+                
+                <!-- Nav Tabs -->
+                <ul class="nav nav-pills custom-career-pills justify-content-center gap-3 mb-4" id="careerTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active px-4 py-3 fw-bold rounded-pill" id="internship-tab" data-bs-toggle="pill" data-bs-target="#internship-pane" type="button" role="tab" aria-controls="internship-pane" aria-selected="true">
+                            <i class="fa-solid fa-graduation-cap me-2 text-gold-bright"></i>Law Student Internship Form (Google Form)
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link px-4 py-3 fw-bold rounded-pill" id="associates-tab" data-bs-toggle="pill" data-bs-target="#associates-pane" type="button" role="tab" aria-controls="associates-pane" aria-selected="false">
+                            <i class="fa-solid fa-briefcase me-2 text-gold-bright"></i>Junior Advocate & Staff Direct CV
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="careerTabsContent">
+                    
+                    <!-- TAB 1: Google Form for Internship -->
+                    <div class="tab-pane fade show active" id="internship-pane" role="tabpanel" aria-labelledby="internship-tab" tabindex="0">
+                        <div class="glass-panel p-4 p-md-5">
+                            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4 pb-3 border-bottom border-warning">
+                                <div>
+                                    <h4 class="font-serif text-white fw-bold mb-1">
+                                        <i class="fa-solid fa-clipboard-list text-gold-bright me-2"></i>Official Legal Internship Application Form
+                                    </h4>
+                                    <p class="small text-muted mb-0">Please fill out all the details accurately. The application is directly routed to our chamber review team.</p>
+                                </div>
+                                <div>
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSciYi1Ba8mbkBpw-WaK677KRdUuRoZdBlod6RoWoPEA2RmrRw/viewform" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-gold fw-bold px-3 py-2">
+                                        <i class="fa-solid fa-external-link me-1"></i>Open Full Screen
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Embedded Google Form Container -->
+                            <div class="google-form-container rounded-4 overflow-hidden shadow-lg border border-warning" style="background: #ffffff; min-height: 880px;">
+                                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSciYi1Ba8mbkBpw-WaK677KRdUuRoZdBlod6RoWoPEA2RmrRw/viewform?embedded=true" width="100%" height="950" frameborder="0" marginheight="0" marginwidth="0" style="border: none; width: 100%; min-height: 950px; display: block;" title="Nyayasetu Law Firm Internship Google Form">
+                                    Loading Application Form…
+                                </iframe>
+                            </div>
+
+                            <div class="mt-4 p-3 rounded-3 text-center" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass);">
+                                <p class="small text-muted mb-0">
+                                    Having trouble viewing the embedded form above? 
+                                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSciYi1Ba8mbkBpw-WaK677KRdUuRoZdBlod6RoWoPEA2RmrRw/viewform" target="_blank" rel="noopener noreferrer" class="text-gold-bright fw-bold text-decoration-underline ms-1">
+                                        Click here to open the Google Form directly <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: Direct CV Upload for Junior Advocates & Staff -->
+                    <div class="tab-pane fade" id="associates-pane" role="tabpanel" aria-labelledby="associates-tab" tabindex="0">
+                        <div class="row g-4">
+                            <!-- Left: Job Openings Info -->
+                            <div class="col-lg-5">
+                                <div class="glass-panel p-4 h-100" data-spotlight>
+                                    <h5 class="font-serif text-gold-bright fw-bold mb-3">
+                                        <i class="fa-solid fa-user-plus me-2"></i>Professional Openings
+                                    </h5>
+                                    
+                                    <div class="p-3 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass);">
+                                        <h6 class="text-white fw-bold mb-1">Junior Associate Advocate</h6>
+                                        <p class="small text-muted mb-1"><strong>Eligibility:</strong> LL.B. degree & Bar Council enrollment.</p>
+                                        <p class="small text-muted mb-0"><strong>Location:</strong> Civil Court, Motihari</p>
+                                    </div>
+
+                                    <div class="p-3 rounded-3 mb-3" style="background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-glass);">
+                                        <h6 class="text-white fw-bold mb-1">Court Clerk / Office Assistant</h6>
+                                        <p class="small text-muted mb-1"><strong>Skills:</strong> Hindi/English drafting, case file management, computer proficiency.</p>
+                                        <p class="small text-muted mb-0"><strong>Location:</strong> Motihari / Pipra Kothi</p>
+                                    </div>
+
+                                    <div class="p-3 rounded-3" style="background: rgba(212, 175, 55, 0.1); border-left: 3px solid var(--gold-bright);">
+                                        <strong class="text-gold-bright small d-block mb-1"><i class="fa-solid fa-circle-info me-1"></i> Note for Law Students:</strong>
+                                        <p class="small text-muted mb-0">For Internship applications, please use the <strong>Law Student Internship Form</strong> tab above to complete the official Google Form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Direct Submission Form -->
+                            <div class="col-lg-7">
+                                <div class="glass-panel p-4 p-md-5" data-spotlight>
+                                    <h4 class="font-serif text-white fw-bold mb-2">Direct CV Submission</h4>
+                                    <p class="small text-muted mb-4">Submit your profile and resume directly for advocate or staff positions.</p>
+                                    
+                                    {% if messages %}
+                                        {% for message in messages %}
+                                            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show small" role="alert">
+                                                {{ message }}
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="row g-3">
+                                            <div class="col-md-12">
+                                                <label class="form-label small fw-bold text-gold-light">Full Name *</label>
+                                                <input type="text" class="form-control" name="name" required placeholder="Your full name">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-bold text-gold-light">Email Address *</label>
+                                                <input type="email" class="form-control" name="email" required placeholder="name@email.com">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="form-label small fw-bold text-gold-light">Phone Number *</label>
+                                                <input type="tel" class="form-control" name="phone" required placeholder="10-digit mobile number">
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label small fw-bold text-gold-light">Position Applied For *</label>
+                                                <select class="form-select" name="position" required id="career-pos-select">
+                                                    <option value="" selected disabled>Select position</option>
+                                                    <option value="Junior Associate">Junior Associate Advocate</option>
+                                                    <option value="Office Assistant">Court Clerk / Office Assistant</option>
+                                                    <option value="Legal Intern">Legal Intern (Law Student)</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <!-- Dynamic alert if student selects intern -->
+                                            <div class="col-md-12 d-none" id="intern-redirect-alert">
+                                                <div class="alert alert-warning small d-flex align-items-center justify-content-between p-2 mb-0">
+                                                    <span><i class="fa-solid fa-graduation-cap me-1"></i> Tip: You can also apply via the official <strong>Google Form</strong> for faster processing.</span>
+                                                    <button type="button" class="btn btn-sm btn-dark ms-2 text-nowrap" onclick="document.getElementById('internship-tab').click();">Switch to Google Form</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label class="form-label small fw-bold text-gold-light">Upload Resume / CV (PDF format) *</label>
+                                                <input type="file" class="form-control" name="resume" accept=".pdf" required>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="form-label small fw-bold text-gold-light">Cover Letter / Message</label>
+                                                <textarea class="form-control" name="cover_letter" rows="3" placeholder="Briefly introduce yourself, qualifications, and litigation interests..."></textarea>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-gold w-100 py-3 fw-bold text-uppercase tracking-wider shadow">
+                                                    <i class="fa-solid fa-paper-plane me-2"></i>Submit Application
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <!-- Custom inline script for career page dynamic behavior -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check hash in URL
+            if (window.location.hash === '#apply-internship' || window.location.hash === '#internship') {
+                const internTab = document.getElementById('internship-tab');
+                if (internTab) internTab.click();
+            }
+
+            // Detect position select
+            const posSelect = document.getElementById('career-pos-select');
+            const internAlert = document.getElementById('intern-redirect-alert');
+            if (posSelect && internAlert) {
+                posSelect.addEventListener('change', function() {
+                    if (this.value === 'Legal Intern') {
+                        internAlert.classList.remove('d-none');
+                    } else {
+                        internAlert.classList.add('d-none');
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock %}

@@ -1405,3 +1405,222 @@ footer.footer-section {
     .whatsapp-float { width: 52px; height: 52px; font-size: 1.7rem; bottom: 1rem; right: 1rem; }
     .back-to-top { bottom: 5rem; right: 1rem; width: 42px; height: 42px; }
 }
+
+
+/* ---------- 25. Legal Disclaimer Modal (Bar Council of India) ---------- */
+.legal-disclaimer-modal {
+    background: #0b1325 !important;
+    border: 1px solid var(--border-glass-bright) !important;
+    color: #e2e8f0 !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.25) !important;
+}
+
+.legal-disclaimer-modal .modal-header {
+    background: linear-gradient(135deg, #0d1b33 0%, #162646 100%) !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+}
+
+.legal-disclaimer-modal .modal-title {
+    color: #ffd700 !important;
+    font-size: 1.35rem;
+    letter-spacing: 0.5px;
+}
+
+.legal-disclaimer-modal .modal-body {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: #cbd5e1 !important;
+    background: #09101f !important;
+}
+
+.legal-disclaimer-modal .modal-body strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.legal-disclaimer-modal .modal-body a {
+    color: #ffd700 !important;
+    text-underline-offset: 3px;
+}
+
+.legal-disclaimer-modal .modal-footer {
+    background: #060b14 !important;
+    border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal {
+    background: #ffffff !important;
+    border: 1px solid rgba(2, 132, 199, 0.4) !important;
+    color: #1e293b !important;
+    box-shadow: 0 25px 60px rgba(2, 132, 199, 0.25) !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-header {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+    border-bottom: 1px solid rgba(2, 132, 199, 0.2) !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-title {
+    color: #ffffff !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-body {
+    background: #f8fafc !important;
+    color: #334155 !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-body strong {
+    color: #0f172a;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-body a {
+    color: #0284c7 !important;
+}
+
+[data-theme="light"] .legal-disclaimer-modal .modal-footer {
+    background: #f1f5f9 !important;
+    border-top: 1px solid rgba(2, 132, 199, 0.15) !important;
+}
+
+
+/* ---------- 26. Nyayasetu Continuous Moving Announcement Ticker Bar ---------- */
+.nyayasetu-ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg, #050a14 0%, #0c182c 50%, #050a14 100%);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1050;
+    height: 38px;
+    font-family: var(--font-sans);
+}
+
+.nyayasetu-ticker-badge {
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+    color: #060b14;
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 0 16px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 2;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.4);
+}
+
+.nyayasetu-ticker-track {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.nyayasetu-ticker-content {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: nyayasetuTickerScroll 28s linear infinite;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #f1f5f9;
+}
+
+.nyayasetu-ticker-wrap:hover .nyayasetu-ticker-content {
+    animation-play-state: paused;
+}
+
+.nyayasetu-ticker-content .ticker-item {
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nyayasetu-ticker-content .ticker-sep {
+    color: var(--gold-bright);
+    opacity: 0.75;
+    margin: 0 4px;
+}
+
+@keyframes nyayasetuTickerScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Light / Day mode for ticker */
+[data-theme="light"] .nyayasetu-ticker-wrap {
+    background: linear-gradient(90deg, #0284c7 0%, #0369a1 50%, #0284c7 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 15px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="light"] .nyayasetu-ticker-badge {
+    background: #0f172a;
+    color: #ffffff;
+}
+
+[data-theme="light"] .nyayasetu-ticker-content {
+    color: #ffffff;
+}
+
+[data-theme="light"] .nyayasetu-ticker-content .ticker-sep {
+    color: #bae6fd;
+}
+
+
+/* ---------- 27. Career & Internship Google Form Styling ---------- */
+.custom-career-pills .nav-link {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    border: 1px solid var(--border-glass);
+    transition: all 0.3s ease;
+}
+
+.custom-career-pills .nav-link:hover {
+    color: #ffd700;
+    border-color: var(--border-glass-bright);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.custom-career-pills .nav-link.active {
+    background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%) !important;
+    color: #060b14 !important;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+    border-color: #ffd700 !important;
+}
+
+.google-form-container {
+    background: #ffffff;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.google-form-container iframe {
+    width: 100%;
+    min-height: 950px;
+    border: none;
+    display: block;
+}
+
+[data-theme="light"] .custom-career-pills .nav-link {
+    background: #e2e8f0;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+[data-theme="light"] .custom-career-pills .nav-link.active {
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(2, 132, 199, 0.3);
+    border-color: #0284c7 !important;
+}

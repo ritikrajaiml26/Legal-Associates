@@ -599,4 +599,35 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    // ============ 15. Legal Disclaimer Popup Modal (Bar Council of India) ============
+    const disclaimerModalEl = document.getElementById('legalDisclaimerModal');
+    const agreeBtn = document.getElementById('btn-agree-disclaimer');
+
+    if (disclaimerModalEl) {
+        const hasAgreed = localStorage.getItem('lexrp_disclaimer_agreed');
+        if (!hasAgreed) {
+            const disclaimerModal = new bootstrap.Modal(disclaimerModalEl, {
+                backdrop: 'static',
+                keyboard: false
+            });
+
+            const splashEl = document.getElementById('cinematic-intro-splash');
+            if (splashEl && window.getComputedStyle(splashEl).display !== 'none') {
+                setTimeout(() => {
+                    disclaimerModal.show();
+                }, 4300);
+            } else {
+                setTimeout(() => {
+                    disclaimerModal.show();
+                }, 400);
+            }
+        }
+
+        if (agreeBtn) {
+            agreeBtn.addEventListener('click', () => {
+                localStorage.setItem('lexrp_disclaimer_agreed', 'true');
+            });
+        }
+    }
 });
