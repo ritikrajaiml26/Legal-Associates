@@ -351,6 +351,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Trigger immediately on load so above-the-fold content is instantly visible without shifts
+    triggerScrollReveals();
+    setTimeout(triggerScrollReveals, 100);
+    setTimeout(triggerScrollReveals, 500);
+
     const revealElements = document.querySelectorAll(revealSelector);
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -360,8 +365,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }, {
-        threshold: 0.12,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px 50px 0px'
     });
 
     revealElements.forEach(el => revealObserver.observe(el));
@@ -408,30 +413,27 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(updateCounter);
     }
 
-    // ============ 9. Dynamic 3D Perspective Tilt Effect ============
-    const tiltCards = document.querySelectorAll('.trust-box, .practice-card, .core-value-card, .advocate-card, .article-card, [data-tilt]');
-    tiltCards.forEach(card => {
-        const handleTilt = (clientX, clientY) => {
-            const rect = card.getBoundingClientRect();
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = ((y - centerY) / centerY) * -10;
-            const rotateY = ((x - centerX) / centerX) * 10;
+    // ============ 9. Refined Hover Tilt (Desktop Only, No Sticking or Box Overlap) ============
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (!isTouchDevice) {
+        const tiltCards = document.querySelectorAll('.practice-card, .core-value-card, .counter-card');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -3;
+                const rotateY = ((x - centerX) / centerX) * 3;
+                card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
 
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(30px) translateY(-8px)`;
-        };
-
-        card.addEventListener('mousemove', (e) => handleTilt(e.clientX, e.clientY));
-        card.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) handleTilt(e.touches[0].clientX, e.touches[0].clientY);
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
         });
-
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px) translateY(0px)';
-        });
-    });
+    }
 
     // ============ 10. Back to Top Button ============
     const backToTop = document.querySelector('.back-to-top');
